@@ -1,0 +1,23 @@
+{
+  "name": "showroom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd server && npm start",
+    "user": "cd client\\user && npm start",
+    "admin": "cd client\\admin && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run user\" \"npm run admin\"",
+    "install-root": "npm install",
+    "install-client-admin": "cd client\\admin && npm install",
+    "install-client-user": "cd client\\user && npm install",
+    "install-server": "cd server && npm install",
+    "install-all": "concurrently \"npm run install-root\" \"npm run install-client-admin\" \"npm run install-client-user\" \"npm run install-server\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.0.0"
+  }
+}
