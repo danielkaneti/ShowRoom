@@ -7,9 +7,6 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <div>
     <App />
-    <App />
-    <App />
-
   </div>
   
     ,
