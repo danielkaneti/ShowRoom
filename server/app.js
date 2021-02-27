@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const http = require('http');
+const users = require('./routes/users');
 
 //require('custom-env').env(process.env.NODE_ENV, './config');
 
@@ -18,7 +19,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Welcome to our API!');
 });
-
+app.use('/users', users);
 app.listen(2222, () => {
     console.log('Hithabarnu!@!#@!#@@!#')
 });
