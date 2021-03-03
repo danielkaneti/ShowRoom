@@ -30,7 +30,7 @@ export class EditproductComponent implements OnInit {
   }
 
   updateProduct(titleN: string, yearN: number, genreN: string,descriptionN: string, 
-    image_urlN: string, trailer_videoN: string) {
+    image_urlN: string) {
 
     let id = this.rout.snapshot.params['id'];
 
@@ -41,7 +41,6 @@ export class EditproductComponent implements OnInit {
       genre: genreN,
       description: descriptionN,
       image_url: image_urlN,
-      trailer_video: trailer_videoN
       
     });
 

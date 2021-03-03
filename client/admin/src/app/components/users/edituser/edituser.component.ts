@@ -29,7 +29,7 @@ export class EdituserComponent implements OnInit {
 
   }
 
-  updateUser(usernameU: string, passwordU: number, adminU: string, firstNameU: string,
+  updateUser(usernameU: string, passwordU: string, adminU: string, firstNameU: string,
     lastNameU: string, emailU: string){
 
       let id = this.rout.snapshot.params['id'];

@@ -5,10 +5,10 @@ export interface Reviews{
 
     _id:number,
     users:string,
-    reviewTitle: String,
-    reviewContent: String,
-    rating: Number,
-    lastUpdated: Number
+    reviewTitle: string,
+    reviewContent: string,
+    rating: number,
+    lastUpdated: number
 
 }
 

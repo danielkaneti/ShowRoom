@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loginAdmin(email: string, password: number) {
+  loginAdmin(email: string, password: string) {
     
 
     //console.log(email, password);

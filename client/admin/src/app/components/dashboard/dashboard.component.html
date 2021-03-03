@@ -37,13 +37,14 @@
                     </thead>
   
                     <tbody>
-                      <tr *ngFor="let reviews of reviews">
-                        <td>{{reviews.user.username}}</td>
-                        <td>{{reviews.product.title}}</td>
-                        <td>{{reviews.reviewTitle}}</td>
-                        <td>{{reviews.reviewContent}}</td>
-                        <td> <i class="lar la-star mr-2"></i> {{reviews.rating}}</td>
-                        <td>{{reviews.lastUpdated | date:'dd/MM/yyyy'}}</td>
+                      <tr *ngFor="let currReview of reviews">
+                        <!-- NOY TODO - SORRY BUT THIS IS NOT HOW YOU FINISH A DEGREE -->
+                        <!-- <td>{{currReview.user.username}}</td>
+                        <td>{{currReview.product.title}}</td> -->
+                        <td>{{currReview.reviewTitle}}</td>
+                        <td>{{currReview.reviewContent}}</td>
+                        <td> <i class="lar la-star mr-2"></i> {{currReview.rating}}</td>
+                        <td>{{currReview.lastUpdated}}</td>
                       </tr>
   
                     </tbody>

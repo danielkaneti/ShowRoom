@@ -25,7 +25,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { AdduserComponent } from './components/users/adduser/adduser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
 import { EditproductComponent } from './components/products/editproduct/editproduct.component';
-import { EditreviewComponent } from './components/reviews/editreview/editreview.component';
+import { EditreviewComponent } from './components/reviews/editreriew/editreriew.component';
 import { SearchfilterPipe } from './components/users/searchfilter.pipe';
 import { GroupbyComponent } from './components/products/groupby/groupby.component';
 
@@ -33,10 +33,7 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { StatisticService } from './services/statistic.service';
 import { AuthGuard } from './auth.guard';
 import { HighlightDirective } from './components/statistics/highlight.directive';
-import { EditreriewComponent } from './components/reviews/editreriew/editreriew.component';
-
-
-
+import { CommonModule, SlicePipe } from '@angular/common';
 
 const config: SocketIoConfig = { url: environment.showroomUrl, options: {} };
 
@@ -59,9 +56,10 @@ const config: SocketIoConfig = { url: environment.showroomUrl, options: {} };
     SearchfilterPipe,
     GroupbyComponent,
     HighlightDirective,
-    EditreriewComponent
+    EditreviewComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,

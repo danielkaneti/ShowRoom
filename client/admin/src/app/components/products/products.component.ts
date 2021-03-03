@@ -41,7 +41,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  editMov(id: number) {
+  editProduct(id: number) {
     this.rout.navigate(['/products', id]);
     //console.log(this.rout.navigate(['/products', id]));
   }

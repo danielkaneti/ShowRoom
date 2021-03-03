@@ -63,11 +63,11 @@
 
                                     <tbody
                                     >
-                                        <tr *ngFor="let products of products">
-                                            <td> {{ products.title }} </td>
-                                            <td> {{ products.genre }} </td>
-                                            <td> {{ products.year }} </td>
-                                            <td> {{ products.description | slice:0:120 }}... </td>
+                                        <tr *ngFor="let product69 of products">
+                                            <td> {{ product69.title }} </td>
+                                            <td> {{ product69.genre }} </td>
+                                            <td> {{ product69.year }} </td>
+                                            <td> {{ product69.description | slice:0:120 }}... </td>
                                             
                                             <td>
                                                 <div class="flex align-items-center list-user-action">
@@ -77,12 +77,12 @@
                                                              -->
                                                     <a class="iq-bg-success" data-toggle="tooltip" data-placement="top"
                                                         type="button"  title="Edit" data-original-title="Edit" 
-                                                        (click)="editMov(products._id, users)" >
+                                                        (click)="editProduct(product69._id)" >
                                                         <i class="ri-pencil-line"></i></a>
 
                                                     <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
                                                         type="button" title="Delete" data-original-title="Delete" 
-                                                        (click)="onDelete(products._id)"><i class="ri-delete-bin-line"></i></a>
+                                                        (click)="onDelete(product69._id)"><i class="ri-delete-bin-line"></i></a>
                                                 </div>
                                             </td>
                                         </tr>

@@ -42,12 +42,12 @@
                                                     </select>
                                                 </div>
 
-                                                <div class="col-12 form-group">
+                                                <!-- <div class="col-12 form-group">
                                                     <textarea #inpProduct type="text" rows="3" class="form-control"
                                                         [(ngModel)]="products.trailer_video"
                                                         [ngModelOptions]="{standalone: true}">
                                                     </textarea>
-                                                </div>
+                                                </div> -->
                                                 <div class="col-12 form-group">
                                                     <textarea #inpImage type="text" rows="3" class="form-control"
                                                         [(ngModel)]="products.image_url"
@@ -69,8 +69,8 @@
                                     <div style="display: flex; justify-content: space-between;">
 
                                         <div>
-                                            <button style="margin:5px;" (click)="updateProduct(inpTitle.value, inpYear.value, inpCat.value, 
-                                            inpDesc.value, inpImage.value, inpProduct.value)" (click)="alert()"
+                                            <button style="margin:5px;" (click)="updateProduct(inpTitle.value, +inpYear.value, inpCat.value, 
+                                            inpDesc.value, inpImage.value)" (click)="alert()"
                                                 type="submit" class="btn btn-primary">Submit</button>
                                             <button style="margin:5px;" type="reset"
                                                 class="btn btn-danger">Clear</button>

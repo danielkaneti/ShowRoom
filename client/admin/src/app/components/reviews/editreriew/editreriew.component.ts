@@ -7,8 +7,8 @@ import { editReviews } from 'src/app/models/reviews';
 
 @Component({
   selector: 'app-editreview',
-  templateUrl: './editreview.component.html',
-  styleUrls: ['./editreview.component.css']
+  templateUrl: './editreriew.component.html',
+  styleUrls: ['./editreriew.component.css']
 })
 
 

@@ -3,9 +3,9 @@
 
 export interface Products{
     _id:number,
-    title: {type:String, unique: true},
-    year: Number,
-    genre: String,  
-    description: String,
-    image_url: String
+    title: {type:string, unique: true},
+    year: number,
+    genre: string,  
+    description: string,
+    image_url: string
 }

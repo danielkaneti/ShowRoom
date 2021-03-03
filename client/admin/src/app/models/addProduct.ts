@@ -1,3 +1,4 @@
+import { Products } from "./products";
 
 
 
@@ -7,12 +8,11 @@ export interface AddProduct{
     genre: string,  // delimiter ','
     description: string,
     image_url: string,
-    trailer_video: string
 }
 export interface groupProduct{
  
     genre: string,  // delimiter ','
-    products:[]
+    products: Products[]
 }
 export interface scrapeM{
  

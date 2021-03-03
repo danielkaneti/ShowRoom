@@ -11,7 +11,7 @@ import { addUser } from '../models/addUser';
 
 export class RefreshService {
 
-  private source= new BehaviorSubject(null);
+  private source= new BehaviorSubject<addUser | null>(null);
   refreshProduct= this.source.asObservable();
 
   constructor() { }

@@ -10,7 +10,7 @@ import { AddProductComponent } from './components/products/add-product/add-produ
 import { AdduserComponent } from './components/users/adduser/adduser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
 import { EditproductComponent } from './components/products/editproduct/editproduct.component';
-import { EditreviewComponent } from './components/reviews/editreview/editreview.component';
+import { EditreviewComponent } from './components/reviews/editreriew/editreriew.component';
 import { GroupbyComponent } from './components/products/groupby/groupby.component';
 import { AuthGuard } from './auth.guard';
 

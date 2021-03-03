@@ -9,11 +9,7 @@ import { ProductsService} from '../../../services/products.service';
   styleUrls: ['./groupby.component.css']
 })
 export class GroupbyComponent implements OnInit {
-  mov:groupProduct;
   products:groupProduct;
-  product: any[]=[
-
-  ]
 
   constructor(private productservice: ProductsService) { }
 
@@ -27,7 +23,7 @@ export class GroupbyComponent implements OnInit {
     this.productservice.getProductsByGenre().subscribe(data=>{
       this.products=data;
 
-      var product= data['products'].map(a=>this.mov=product);
+      // var product= data['products'].map(a=>this.product=product);
      
       
       

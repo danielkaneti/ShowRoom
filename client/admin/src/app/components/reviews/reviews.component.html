@@ -54,23 +54,24 @@
 
                                         <tbody>
 
-                                            <tr *ngFor="let reviews of reviews">
-                                                <td>  {{ reviews.product.title }} </td>
-                                                <td>  {{ reviews.user.username }} </td>
-                                                <td>  {{ reviews.reviewTitle }} </td>
-                                                <td>  {{ reviews.reviewContent | slice:0:100 }}.. </td>
-                                                <td> <i class="lar la-star mr-2"></i> {{ reviews.rating }} </td>
-                                                <td>  {{ reviews.lastUpdated | date:'dd/MM/yyyy'}} </td>
+                                            <tr *ngFor="let currReview of reviews">
+                                                <!-- NOY - CHECK WHO IS THE RETARD THAT PUT THESE 2 LINES, NO SENSE -->
+                                                <!-- <td>  {{ currReview.product.title }} </td>
+                                                <td>  {{ currReview.user.username }} </td> -->
+                                                <td>  {{ currReview.reviewTitle }} </td>
+                                                <td>  {{ currReview.reviewContent | slice:0:100 }}.. </td>
+                                                <td> <i class="lar la-star mr-2"></i> {{ currReview.rating }} </td>
+                                                <td>  {{ currReview.lastUpdated }} </td>
                                                
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">
                                                         <a class="iq-bg-success" data-toggle="tooltip"
                                                             data-placement="top" type="button" title="Edit" data-original-title="Edit"
-                                                            (click)="editRe(reviews._id)"><i class="ri-pencil-line"></i></a>
+                                                            (click)="editRe(currReview._id)"><i class="ri-pencil-line"></i></a>
 
                                                             <a class="iq-bg-primary" data-toggle="tooltip"
                                                             data-placement="top" title="Delete" type="button" data-original-title="Delete"
-                                                           (click)="onDelete(reviews._id)"><i class="ri-delete-bin-line"></i></a>
+                                                           (click)="onDelete(currReview._id)"><i class="ri-delete-bin-line"></i></a>
                                                     </div>
                                                 </td>
 

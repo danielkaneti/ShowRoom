@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StatisticService } from '../../services/statistic.service';
-import { Chart } from 'chart.js';
+import { Chart, ChartType } from 'chart.js';
 import { map } from 'rxjs/operators';
 import { Statistics } from '../../models/statistics';
 import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
@@ -19,10 +19,10 @@ export class StatisticsComponent implements OnInit {
 
   public doughnutChartLabels = [];
   public doughnutChartData = [];
-  public doughnutChartType = 'doughnut';
+  public doughnutChartType: ChartType = 'doughnut';
 
   public barChartLabels = [];
-  public barChartType = 'bar';
+  public barChartType: ChartType = 'bar';
   public barChartData = [];
   public barChartOptions = {
     scaleShowVerticalLines: false,

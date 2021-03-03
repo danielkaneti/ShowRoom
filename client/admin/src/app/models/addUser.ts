@@ -1,7 +1,7 @@
 export interface addUser {
 
     username: string,
-    password: number,
+    password: string,
     admin: string,
     firstName: string,
     lastName: string,

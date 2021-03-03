@@ -20,7 +20,7 @@ export class AdduserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createUser(usernameU: string, passwordU: number, adminU: string, firstNameU: string,
+  createUser(usernameU: string, passwordU: string, adminU: string, firstNameU: string,
     lastNameU: string, emailU: string){
 
         const userNew :addUser=({
