@@ -1,5 +1,5 @@
 const reviewsService = require('../services/reviews');
-const moviesService = require('../services/movies');
+const productsService = require('../services/products');
 const usersService = require('../services/users');
 
 const createReview = async (req, res) => {
@@ -14,8 +14,8 @@ const getReviews = async (req, res) => {
 };
 
 
-const getReviewsByMovieId = async (req, res) => {
-    const review_ids = await moviesService.getReviewsByMovieId(req.params.movieId);
+const getReviewsByProductId = async (req, res) => {
+    const review_ids = await productsService.getReviewsByProductId(req.params.productId);
 
     const reviews = await reviewsService.getReviewsByIds(review_ids.reviews)
 
@@ -27,8 +27,8 @@ const getReviewsByMovieId = async (req, res) => {
 };
 
 
-const getReviewsMoviesUsers = async (req, res) => {
-    const reviews = await reviewsService.getReviewsMoviesUsers();
+const getReviewsProductsUsers = async (req, res) => {
+    const reviews = await reviewsService.getReviewsProductsUsers();
     res.json(reviews);
 };
 
@@ -93,10 +93,10 @@ const getReviewById = async (req, res) => {
 
 const getReviewsByTitleRatingUsername = async (req, res) => {
 
-    var [movieTitle, rating, userName] = req.params.param.split('=');
+    var [productTitle, rating, userName] = req.params.param.split('=');
 
-    if(movieTitle === ''){
-        movieTitle =  null
+    if(productTitle === ''){
+        productTitle =  null
     }
 
     if(userName === ''){
@@ -107,7 +107,7 @@ const getReviewsByTitleRatingUsername = async (req, res) => {
         rating =  NaN
     }
 
-    const allReviews = await reviewsService.getReviewsMoviesUsers(movieTitle, rating, userName);
+    const allReviews = await reviewsService.getReviewsProductsUsers(productTitle, rating, userName);
 
     if (!allReviews){
         return res.status(404).json({errors: ['reviews not found']});
@@ -138,10 +138,10 @@ const deleteReview = async (req, res) => {
 
     const reviewId = req.params.id;
 
-    const movie = await moviesService.removeMovieReviews([reviewId]);
+    const product = await productsService.removeProductReviews([reviewId]);
 
-    if(movie.nModified===0){
-        return res.status(404).json({ errors: ['cant find review on movies table to update'] });
+    if(product.nModified===0){
+        return res.status(404).json({ errors: ['cant find review on products table to update'] });
     }
 
 
@@ -170,7 +170,7 @@ module.exports = {
     getReviewsByTitleRatingUsername,
     countReviews,
     topReviewsByDate,
-    getReviewsByMovieId,
-    getReviewsMoviesUsers,
+    getReviewsByProductId,
+    getReviewsProductsUsers,
     searchReview
 }

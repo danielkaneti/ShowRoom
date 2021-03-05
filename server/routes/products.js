@@ -94,9 +94,9 @@ router.route('/avgRatingByYear')
  * http://localhost:8080/products/:productId
  */
 router.route('/:productId')
-    .get(productController.getproductById)
-    .patch(productController.updateproducts)
-    .delete(productController.deleteproduct);
+    .get(productController.getProductById)
+    .patch(productController.updateProducts)
+    .delete(productController.deleteProduct);
 
 
 
