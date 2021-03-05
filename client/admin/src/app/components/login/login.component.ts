@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
 
     //console.log(email, password);
 
-    this.loginservice.getUserByEmail(email).subscribe(data=>{
+    this.loginservice.getUserByEmail(email, password).subscribe(data=>{
       this.user=data;
       
-      if(password===this.user[0].password && this.user[0].admin===true){  
+      if(data != null) {  
         
         localStorage.setItem('isLoggedin', 'true') ;
         this.rout.navigate(['/dashboard']);

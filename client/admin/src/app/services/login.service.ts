@@ -19,9 +19,14 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
 
-  getUserByEmail(email:string):Observable<addUser>{
-    const url = `${this.loginUrl}/${email}`;
-    return this.http.get<addUser>(url);
+  getUserByEmail(email:string, password: string):Observable<addUser>{
+    const url = `${this.loginUrl}`;
+    const loginRequest = {
+      email: email,
+      password: password
+    };
+
+    return this.http.post<addUser>(url, loginRequest);
   }
 
 

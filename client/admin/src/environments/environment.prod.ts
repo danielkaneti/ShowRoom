@@ -18,7 +18,7 @@ export const environment = {
   reviewSearch: 'http://localhost:2222/reviews/searchReview',
   countStatics: 'http://localhost:2222/products/countByGenre',
   avgStatics: 'http://localhost:2222/products/avgRatingByYear',
-  loginUrl: 'http://localhost:2222/users/getUserByEmail',
+  loginUrl: 'http://localhost:2222/users/login',
   productByGenre: 'http://localhost:2222/products/productsByGenre',
   scrapProduct: 'http://localhost:2222/products/scrapeProducts/file='
 
