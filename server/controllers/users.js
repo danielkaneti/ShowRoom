@@ -52,7 +52,7 @@ const getUserByEmail = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    const user = await usersService.login(req.email, req.password);
+    const user = await usersService.login(req.body.email, req.body.password);
 
     if (!user) {
         return res.status(401).json({errors: ['login failed']});
