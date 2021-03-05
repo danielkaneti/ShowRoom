@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 const http = require('http');
 const socketIo = require('socket.io');
 
-const Users = require('./models/users');
-const Products = require('./models/products');
-const Reviews = require('./models/reviews');
+const usersRoute = require('./routes/users');
+const productsRoute = require('./routes/products');
+const reviewsRoute = require('./routes/reviews');
 
 const connectionString = "mongodb+srv://ShowRoom:Aa123456@cluster0.a1mdc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true});
@@ -44,35 +44,9 @@ app.get('/', (req, res) => {
     res.send('Welcome to our API!');
 });
 
-// Users
-app.post('/users', async (req, res) => {
-  const allUsers = await Users.find({});
-  res.send(allUsers);
-});
-
-app.post('/users/login', async (req, res) => {
-  const requestBody = req.body;
-  const email = requestBody.email;
-  const password = requestBody.password;
-
-  const user = await Users.findOne({'email': email, 'password': password});
-
-  res.send(user);
-});
-
-// Products
-app.get('/products', async (req, res) => {
-  const allProducts = await Products.find({});
-
-  res.send(allProducts);
-});
-
-// Reviews
-app.get('/reviews', async (req, res) => {
-  const allReviews = await Reviews.find({});
-  
-  res.send(allReviews);
-});
+app.use('/reviews', reviewsRoute);
+app.use('/users', usersRoute);
+app.use('/products', productsRoute);
 
 const httpClient = http.createServer(app);
 httpClient.listen(2222);
