@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navigation(){
     return (
@@ -8,9 +9,14 @@ export default function Navigation(){
         <a href="#" className="w3-bar-item w3-button"><i className="fa fa-snapchat" /></a>
         <a href="#" className="w3-bar-item w3-button"><i className="fa fa-flickr" /></a>
         <a href="#" className="w3-bar-item w3-button"><i className="fa fa-twitter" /></a>
-        <a href="#" className="w3-bar-item w3-button"><i className="fa fa-linkedin" /></a>
-        <a href="#" className="w3-bar-item w3-button w3-right"><i className="fa fa-search" /></a>
+        <a href="#" className="w3-bar-item w3-button"><i className="bi bi-cart" /></a>
+        
+
+        
       </div>
       
     )
 }
+
+
+//<Link to='/Login'><a><div className="w3-bar-item w3-button">Login</div></a></Link>
