@@ -18,6 +18,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^6.0.0"
+    "axios": "^0.21.1",
+    "concurrently": "^6.0.0",
+    "react-hook-form": "^6.15.4"
   }
 }
