@@ -23,7 +23,7 @@ const Grid = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  margin-left: 20px;
+  margin-left: 110px;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 `;
