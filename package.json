@@ -18,6 +18,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^6.0.0"
+    "axios": "^0.21.1",
+    "concurrently": "^6.0.0",
+    "dispatch": "^1.0.2",
+    "react-redux": "^7.2.2",
+    "use-history": "^1.4.1"
   }
 }

@@ -1,0 +1,99 @@
+<router-outlet></router-outlet>
+
+<!doctype html>
+<html lang="en">
+
+
+<div class="wrapper">
+    <div id="content-page" class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title">Product Lists</h4>
+                            </div>
+                            <div class="iq-card-header-toolbar d-flex align-items-center">
+                                <input [(ngModel)]="scrape"  [ngModelOptions]="{standalone: true}"  
+                                 type="text" class="text search-input" placeholder="Scrape...">
+                                <nav>
+                                    <a style="margin:5px;" (click)="scrapeProduct()" class="btn btn-primary">Scrape</a>
+                                </nav>
+                                <nav>
+                                    <a style="margin:5px;" routerLink="/groupByProduct" class="btn btn-primary">Group-by</a>
+                                </nav>
+                                <nav>
+                                    <a style="margin:5px;" routerLink="/addProduct" class="btn btn-primary">Add product</a>
+                                </nav>
+                                
+                            </div>
+                        </div>
+
+                        <div class="ml-auto search-container">
+                            <form  class="searchbox">
+
+                                <i class="ri-search-line"></i>
+                                <input style="margin:10px;" [(ngModel)]="productM" [ngModelOptions]="{standalone: true}"  (input)="searchProduct()"
+                                 type="text" class="text search-input" placeholder="by product...">
+                                <i class="ri-search-line"></i>
+                                <input style="margin:10px;" [(ngModel)]="productC" [ngModelOptions]="{standalone: true}"  (input)="searchProduct()"
+                                 type="text" class="text search-input" placeholder="by category...">
+                                <i class="ri-search-line"></i>
+                                <input style="margin:10px;" [(ngModel)]="productY" [ngModelOptions]="{standalone: true}"  (input)="searchProduct()"
+                                 type="text" class="text search-input" placeholder="by year...">
+                            
+                            </form>
+                        </div>
+
+                        <div class="iq-card-body">
+                            <div class="table-view">
+                                <!-- data-tables  -->
+                                <table class="table product_table " style="width:100%">
+
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 20%;">Product</th>
+                                            <th>Category</th>
+                                            <th>Release Year</th>
+                                            <th style="width: 20%;">Description</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody
+                                    >
+                                        <tr *ngFor="let product of products">
+                                            <td> {{ product.title }} </td>
+                                            <td> {{ product.genre }} </td>
+                                            <td> {{ product.year }} </td>
+                                            <td> {{ product.description | slice:0:120 }}... </td>
+                                            
+                                            <td>
+                                                <div class="flex align-items-center list-user-action">
+                                                    <!-- <a class="iq-bg-warning" data-toggle="tooltip" data-placement="top"
+                                                        title="" data-original-title="View" href="#"><i
+                                                            class="lar la-eye"></i></a>
+                                                             -->
+                                                    <a class="iq-bg-success" data-toggle="tooltip" data-placement="top"
+                                                        type="button"  title="Edit" data-original-title="Edit" 
+                                                        (click)="editProduct(product._id)" >
+                                                        <i class="ri-pencil-line"></i></a>
+
+                                                    <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
+                                                        type="button" title="Delete" data-original-title="Delete" 
+                                                        (click)="onDelete(product._id)"><i class="ri-delete-bin-line"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
