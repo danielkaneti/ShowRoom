@@ -249,31 +249,10 @@ const deleteProduct = async (req, res) => {
     res.send();
 };
 
-
-const scrapeProducts = async (req, res) => {
-    const file = fs.createReadStream(req.params[0].split("=")[1]);
-    var count = 0; // cache the running count
-    Papa.parse(file, {
-        step:function(result) {
-            result.data.forEach(async function (imdbID) {
-                var product = await getProduct(imdbID);
-                if(product){
-                    var newProducts = await productsService.createProduct(product);
-                    return await newProducts;
-                }
-            });
-        },
-        complete: function(results, file) {
-            console.log('parsing complete read', count, 'records.');
-        }
-    });
-};
-
-
-async function getProduct (imdbID)  {
+async function scrapeProductsFromWinery ()  {
 
     return new Promise((resolve,reject)=>{
-        scrapeService.getProduct(imdbID)
+        scrapeService.scrapeProductsFromWinery()
             .then( response => resolve(response));
     });
 }
@@ -292,7 +271,6 @@ module.exports = {
     getProductsByGenre,
     countByGenre,
     avgRatingByYear,
-    getProduct,
+    scrapeProductsFromWinery,
     productsByGenre,
-    scrapeProducts
 }
