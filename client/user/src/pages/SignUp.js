@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from "axios";
 
 function Copyright() {
   return (
@@ -48,6 +49,34 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [firstNameInput, setFirstNameInput] = useState('');
+  const [lastNameInput, setLastNameInput] = useState('');
+  const [usernameInput, setUsernameInput] = useState('');
+  const [emailInput, setEmailInput] = useState('');
+  const [flag, setflag] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+ 
+
+  const onSubmit=e=>{
+    e.preventDefault()
+    const data={
+        usernameInput,
+        passwordInput,
+        firstNameInput,
+        lastNameInput,
+        emailInput
+    }
+    console.log(data)
+    axios.post('http://localhost:2222/users/',data).then( 
+        res=>{
+            console.log(res)
+        }
+    ).catch(
+        err=>{
+            console.log(err)
+        }
+    )
+ }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,7 +88,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
         <TextField
             variant="outlined"
             margin="normal"
@@ -70,6 +99,7 @@ export default function SignIn() {
             name="UserName"
             autoComplete="userName"
             autoFocus
+            onChange={(event)=>{setUsernameInput(event.target.value);}}
           />
         <TextField
             variant="outlined"
@@ -81,6 +111,7 @@ export default function SignIn() {
             name="FirstName"
             autoComplete="FirstName"
             autoFocus
+            onChange={(event)=>{setFirstNameInput(event.target.value);}}
           />
         <TextField
             variant="outlined"
@@ -92,6 +123,7 @@ export default function SignIn() {
             name="LastName"
             autoComplete="LastName"
             autoFocus
+            onChange={(event)=>{setLastNameInput(event.target.value);}}
           />
           <TextField
             variant="outlined"
@@ -103,6 +135,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(event)=>{setEmailInput(event.target.value);}}
           />
           <TextField
             variant="outlined"
@@ -114,6 +147,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(event)=>{setPasswordInput(event.target.value);}}
           />
     
           <Button

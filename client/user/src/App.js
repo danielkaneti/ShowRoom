@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Home from './pages/Home';
+import Home from './pages/home';
 import Catalog from './pages/Catalog';
 import WineDetails from './pages/WineDetails';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import Navigation from './components/Navigation';
+import Navigation from './components/navigation';
 import {GeneralStyle} from './components/GeneralStyle';
 
 import io from "socket.io-client";
