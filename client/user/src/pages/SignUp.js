@@ -60,11 +60,11 @@ export default function SignIn() {
   const onSubmit=e=>{
     e.preventDefault()
     const data={
-        usernameInput,
-        passwordInput,
-        firstNameInput,
-        lastNameInput,
-        emailInput
+        username: usernameInput,
+        password: passwordInput,
+        firstName: firstNameInput,
+        lastName: lastNameInput,
+        email: emailInput
     }
     console.log(data)
     axios.post('http://localhost:2222/users/',data).then( 
@@ -73,7 +73,7 @@ export default function SignIn() {
         }
     ).catch(
         err=>{
-            console.log(err)
+          alert('Oi shit something happened: ' + err.response.data + ', error code: ' + err.response.status);
         }
     )
  }

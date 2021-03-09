@@ -55,16 +55,19 @@ export default function SignIn() {
     const onSubmit=e=>{
         e.preventDefault()
         const data={
-            emailInput,
-            passwordInput
+            email: emailInput,
+            password: passwordInput
         }
         axios.post('http://localhost:2222/users/login',data).then(
             res=>{
                 console.log(res)
+                alert('kama naim kama nifla. ha login shelha avad.');
             }
         ).catch(
             err=>{
-                console.log(err)
+                console.log(err.response)
+                // TODO - SHOW THIS TO MESSAGE SOMEHOW
+                alert('ohhh no. somthing go worng !!!!: ' + err.response.data + ', error code: ' + err.response.status);
             }
         )
         console.log(data)
