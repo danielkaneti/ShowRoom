@@ -1,9 +1,13 @@
-import React from "react";
-import Header from '../components/header'
+import React from 'react';
+import {Container} from '../components/GeneralStyle';
 
-export default function Login(){
-    return (
-        <Header/>
-      
-    )
+const Home = () => {
+
+    return(
+        <Container>
+            Home
+        </Container>
+    );
 }
+
+export default Home;
