@@ -4,7 +4,8 @@ import Footer from './components/footer'
 import Men from './pages/men'
 import Women from './pages/women'
 import Home from './pages/home'
-import Login from './pages/login'
+import Login from './pages/Login/Login'
+import Register from './pages/Register/Register'
 
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -26,7 +27,7 @@ function App() {
         <Route path="/Men" component={Men} />
         <Route path="/Women" component={Women} />
         <Route path="/Login" component={Login} />
-
+        <Route path="/Register" component={Register} />
       </Switch>
       </BrowserRouter>
 
