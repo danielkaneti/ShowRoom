@@ -3,9 +3,8 @@ const productController = require('../controllers/products');
 var router = express.Router();
 
 
-// TODO - ADD SCRAPER METHODS
-// router.route('/scrape')
-//     .get(productController.scrapeProducts);
+router.route('/scrape')
+    .get(productController.scrapeProductsFromWinery);
 
 
 /**

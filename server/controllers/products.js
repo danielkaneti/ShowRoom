@@ -249,10 +249,10 @@ const deleteProduct = async (req, res) => {
     res.send();
 };
 
-async function getProduct (imdbID)  {
+async function scrapeProductsFromWinery ()  {
 
     return new Promise((resolve,reject)=>{
-        scrapeService.getProduct(imdbID)
+        scrapeService.scrapeProductsFromWinery()
             .then( response => resolve(response));
     });
 }
@@ -271,6 +271,6 @@ module.exports = {
     getProductsByGenre,
     countByGenre,
     avgRatingByYear,
-    getProduct,
+    scrapeProductsFromWinery,
     productsByGenre,
 }

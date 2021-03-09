@@ -3,105 +3,78 @@ const cheerio = require('cheerio');
 const Scraper = require('images-scraper');
 const probe = require('probe-image-size');
 
-const productUrl = 'https://www.imdb.com/title/';
-const productCache = {};
+const axios = require('axios');
+const products = require('../models/products');
 
+const productsService = require('./products');
 
-const getGoggleImage = async (title) => {
+const mainPageUrl = 'https://jlmwines.com/shop/';
+const catalogPageUrlPrefix = 'https://jlmwines.com/shop/?product-page=';
 
-    const google = new Scraper({
-        puppeteer: {
-            headless: false,
-        },
-    });
+const getWinePagesCount = async() => {
+    const mainShopPage = await axios.get(mainPageUrl);
+    const $ = cheerio.load(mainShopPage.data);
+    const pageNumberButtons = $('a.page-numbers').toArray();
 
-    const googleResults = await google.scrape(title + " product 16:9", 40);
-    for (const image of googleResults) {
-        let imageMetadata = await probe(image.url);
-        if(imageMetadata.width > 1799 && imageMetadata.width < 1999 && imageMetadata.height > 999 && imageMetadata.height < 1100){
-            console.log(imageMetadata);
-            return image.url
-        }
-    }
-    return NaN
+    const lastPageButton = pageNumberButtons[pageNumberButtons.length - 2];
+    const lastPageNumber = +$(lastPageButton).text();
+
+    return lastPageNumber;
 };
 
-async function getImage(title){
+const scrapeProductPage = async (productPageUrl) => {
+    const productPage = await axios.get(productPageUrl);
+    const $ = cheerio.load(productPage.data);
 
-    return new Promise((resolve, reject) => {
-        getGoggleImage(title).then(imageURL=> resolve(imageURL));
-    });
+    const wineTitle = $($('div.et_pb_wc_title_0_tb_body').first()).text();
 
-}
+    const wineDescription = $('div.et_pb_wc_description_0_tb_body').first();
 
+    wineDescription.find('br').replaceWith('\n');
 
-// get a specific product
-function getProduct(imdbID) {
-    // caching for the searched products
-    if (productCache[imdbID]) {
-        console.log('Serving from cache: ', imdbID);
-        return Promise.resolve(productCache[imdbID]);
+    const descriptionParagraphs = wineDescription.children("div.et_pb_module_inner").first().children("p");
+
+    const descriptionTextWithKosher = $(descriptionParagraphs[0]).text() + $(descriptionParagraphs[1]).text();
+
+    const kosherLocation = descriptionTextWithKosher.indexOf('Kosher Certification:');
+
+    const fixedDescriptionText = descriptionTextWithKosher.substring(0, kosherLocation);
+
+    const vintageYearStartIndex = fixedDescriptionText.indexOf("Vintage");
+    const vintageYear = +fixedDescriptionText.substr(vintageYearStartIndex + "Vintage: ".length).split("\n")[0];
+
+    const grapeType = $($('tr.woocommerce-product-attributes-item.woocommerce-product-attributes-item--attribute_pa_grape').first().children('td').first().children('p').first()).text().split(",")[0];
+
+    const product = new products();
+    product.title = wineTitle;
+    product.year = vintageYear;
+    product.genre = grapeType;
+    product.description = fixedDescriptionText;
+    product.image_url = $('div.woocommerce-product-gallery__image').first().children("a").first().attr('href');
+
+    return product;
+};
+
+const scrapePage = async (pageIndex) => {
+    const catalogPage = await axios.get(catalogPageUrlPrefix + pageIndex);
+    const $ = cheerio.load(catalogPage.data);
+
+    const itemsLinks = $('a.woocommerce-LoopProduct-link').toArray();
+
+    for (let item of itemsLinks) {
+        const product = await scrapeProductPage($(item).attr('href'));
+        await productsService.createProduct(product);
     }
+};
 
-    return fetch(`${productUrl}${imdbID}`)
-        .then(response => response.text())
-        .then(async body => {
-            const $ = cheerio.load(body);
-            const $title = $('.title_wrapper h1');
+const scrapeProductsFromWinery = async() => {
+    const pages = await getWinePagesCount();
 
-            // get title
-            const title = $title
-                .first()
-                .contents()
-                .filter(function() {
-                    return this.type === 'text';
-                })
-                .text()
-                .trim();
-
-
-            var obj = $("script[type='application/ld+json']");
-
-            for(var i in obj){
-                for(var j in obj[i].children){
-                    var data = obj[i].children[j].data;
-                    if(data){
-                        data = data.replace('!DOCTYPE html ""','');
-                        var dataStringify = JSON.stringify(data);
-                        if(dataStringify.length > 2){
-                            var dataJson = JSON.parse(data);
-                        }
-                    }
-                }
-            }
-
-            let genre = dataJson.genre[0];
-            if(typeof dataJson.genre === "string"){
-                genre = dataJson.genre;
-            }
-            const year = parseInt(dataJson.datePublished.split('-')[0]);
-            const description = dataJson.description;
-            const image = await getImage(title);
-
-            if(!genre || !year || !description || !image){
-                return
-            }
-
-            const product = {
-                title: title,
-                year: year,
-                genre:genre,
-                description: description,
-                image_url: image
-            };
-            productCache[imdbID] = product;
-
-            return product;
-
-        });
-
-}
+    for (let i = 1; i <= pages; i++) {
+        await scrapePage(i);
+    }
+};
 
 module.exports = {
-    getProduct
+    scrapeProductsFromWinery
 };
