@@ -15,11 +15,11 @@ import styled from 'styled-components';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 250,
-    height: 250,
+    height: 350,
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '100%', // 16:9
   },
   avatar: {
     backgroundColor: red[500],
@@ -27,35 +27,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function WineCard({wine}) {
+export default function WineCard({wine, onWatchClick}) {
   const classes = useStyles();
-  const {title, type} = wine;
+
+  const handleWatchClick = (e) => {
+    e.preventDefault();
+    onWatchClick(wine);
+  }
+
+  const {title, type, image} = wine;
 
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            W
-          </Avatar>
-        }
+
         title={title}
         subheader={type}
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
+        image={image}
         title="Paella dish"
       />
-      <CardContent>
+      {/* <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           This is a template
         </Typography>
-      </CardContent>
+      </CardContent> */}
+
+        <div size="small" color="inherit" onClick={handleWatchClick}>
+          Detailes
+        </div>
+
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
+
       </CardActions>
     </Card>
   );
