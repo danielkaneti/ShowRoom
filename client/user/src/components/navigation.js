@@ -1,22 +1,52 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
+import styled from 'styled-components';
 
-export default function Navigation(){
-    return (
-        <div className="w3-bar w3-black w3-hide-small">
-        <a href="#" className="w3-bar-item w3-button"><i className="fa fa-facebook-official" /></a>
-        <a href="#" className="w3-bar-item w3-button"><i className="fa fa-instagram" /></a>
-        <a href="#" className="w3-bar-item w3-button"><i className="fa fa-snapchat" /></a>
-        <a href="#" className="w3-bar-item w3-button"><i className="fa fa-flickr" /></a>
-        <a href="#" className="w3-bar-item w3-button"><i className="fa fa-twitter" /></a>
-        <a href="#" className="w3-bar-item w3-button"><i className="bi bi-cart" /></a>
-        
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
-        
-      </div>
-      
-    )
+export default function Navigation() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            SHOWROOM
+          </Typography>
+          <NavLink to="/">
+              <Button color="inherit">Home</Button>
+          </NavLink>
+          <NavLink to="/catalog">
+             <Button color="inherit">Catalog</Button>
+          </NavLink>
+          <NavLink to="/">
+             <Button color="inherit">Chat With Us</Button>
+          </NavLink>
+          <NavLink to="/signin">
+              <Button color="inherit">Sign In</Button>
+          </NavLink>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
 
-
-//<Link to='/Login'><a><div className="w3-bar-item w3-button">Login</div></a></Link>
+const NavLink = styled(Link)`
+    text-decoration: inherit;
+`;
