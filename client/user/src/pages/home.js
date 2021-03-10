@@ -1,12 +1,52 @@
 import React from 'react';
-import {Container} from '../components/GeneralStyle';
+import { Carousel } from 'react-bootstrap';
+import image1 from '../image/image2.jpg';
+import image2 from '../image/image3.jpg';
+import image3 from '../image/image4.jpg';
+
 
 const Home = () => {
 
     return(
-        <Container>
-            Home
-        </Container>
+        <Carousel fade={true} pause={false}>
+        <Carousel.Item interval={2000}>
+        <Carousel.Caption >
+          <h3>Welcome to Show Room</h3>
+      <p>Here you will find ths best wine in israel .</p>
+          </Carousel.Caption>
+          <img
+            className="d-block w-100"
+            src={image1} 
+            style={{ height: "740px" }}
+            alt="Welcome to Show Room" 
+          />
+      
+        </Carousel.Item>
+        <Carousel.Item interval={2000}>
+          <img
+            className="d-block w-100"
+            src={image2}
+            style={{ height: "740px" }}
+            alt="Third slide"
+          />
+          <Carousel.Caption>
+          <h3>Welcome to Show Room</h3>
+      <p>Here you will find ths best wine in israel .</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={2000}>
+          <img
+            className="d-block w-100"
+            src={image3}
+            style={{ height: "740px" }}
+            alt="Third slide"
+          />
+          <Carousel.Caption>
+          <h3>Welcome to Show Room</h3>
+      <p>Here you will find ths best wine in israel .</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
     );
 }
 

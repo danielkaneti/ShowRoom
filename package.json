@@ -19,9 +19,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
     "concurrently": "^6.0.0",
     "dispatch": "^1.0.2",
+    "react-bootstrap": "^1.5.1",
     "react-redux": "^7.2.2",
+    "react-responsive-carousel": "^3.2.13",
     "use-history": "^1.4.1"
   }
 }

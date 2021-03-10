@@ -4,6 +4,7 @@ import Home from './pages/home';
 import Catalog from './pages/Catalog';
 import WineDetails from './pages/WineDetails';
 import SignIn from './pages/SignIn';
+
 import SignUp from './pages/SignUp';
 import Navigation from './components/navigation';
 import {GeneralStyle} from './components/GeneralStyle';
