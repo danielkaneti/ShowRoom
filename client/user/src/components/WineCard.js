@@ -16,14 +16,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: 250,
     height: 350,
+    fontSize: '16px'
   },
   media: {
-    height: 0,
+    height: 280,
     paddingTop: '100%', // 16:9
-  },
-  avatar: {
-    backgroundColor: red[500],
-    color: 'black',
+    objectFit: 'contain'
   },
 }));
 
@@ -35,18 +33,18 @@ export default function WineCard({wine, onWatchClick}) {
     onWatchClick(wine);
   }
 
-  const {title, type, image} = wine;
+  const {title, genre, image_url} = wine;
 
   return (
     <Card className={classes.root}>
       <CardHeader
 
         title={title}
-        subheader={type}
+        subheader={genre}
       />
       <CardMedia
         className={classes.media}
-        image={image}
+        image={image_url}
         title="Paella dish"
       />
       {/* <CardContent>
