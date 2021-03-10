@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 import { useState } from 'react';
 import axios from "axios";
 import { Redirect } from 'react-router';
+import { signOut } from '../redux/actions/usersActions';
 
 function Copyright() {
   return (

@@ -25,7 +25,7 @@ export default function Navigation() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar style={{ background: '#212121' }}>
           <Typography variant="h6" className={classes.title}>
             SHOWROOM
           </Typography>

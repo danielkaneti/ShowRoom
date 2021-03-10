@@ -15,13 +15,12 @@ import styled from 'styled-components';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 250,
-    height: 350,
-    fontSize: '16px'
+    height: 450,
   },
   media: {
     height: 280,
     paddingTop: '100%', // 16:9
-    objectFit: 'contain'
+    objectFit: 'cover'
   },
 }));
 
@@ -53,9 +52,9 @@ export default function WineCard({wine, onWatchClick}) {
         </Typography>
       </CardContent> */}
 
-        <div size="small" color="inherit" onClick={handleWatchClick}>
+       {/* <div size="small" color="inherit" onClick={handleWatchClick}>
           Detailes
-        </div>
+        </div>*/}
 
       <CardActions disableSpacing>
 
