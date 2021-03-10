@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useState } from 'react';
 import axios from "axios";
+import { Redirect } from 'react-router';
 
 function Copyright() {
   return (
@@ -51,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
+    const [flag, setflag] = useState(false);
     const classes = useStyles();
     const onSubmit=e=>{
         e.preventDefault()
@@ -61,6 +63,7 @@ export default function SignIn() {
         axios.post('http://localhost:2222/users/login',data).then(
             res=>{
                 console.log(res)
+                setflag(true)
                 alert('kama naim kama nifla. ha login shelha avad.');
             }
         ).catch(
@@ -71,8 +74,12 @@ export default function SignIn() {
             }
         )
         console.log(data)
+       
+       
      }
-
+     if(flag){
+      return <Redirect to ="/"/>;
+    }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
