@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from "axios";
+import { Redirect } from 'react-router';
 
 function Copyright() {
   return (
@@ -70,14 +71,19 @@ export default function SignIn() {
     axios.post('http://localhost:2222/users/',data).then( 
         res=>{
             console.log(res)
+            setflag(true)
         }
     ).catch(
         err=>{
           alert('Oi shit something happened: ' + err.response.data + ', error code: ' + err.response.status);
         }
+     
     )
+   
  }
-
+ if(flag){
+  return <Redirect to ="/"/>;
+}
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
