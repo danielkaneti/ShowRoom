@@ -84,7 +84,7 @@ h6 { font-size: 1.0em; line-height: 1.3em; }
 /*----------------------------------------------
 Input
 ------------------------------------------------*/
-label { color: var(--iq-white); }
+label { color: var(--iq-body-text); }
 .form-control.form-control-sm { height: 30px; }
 .form-control.form-control-lg { height: 50px; line-height: 50px; }
 
@@ -172,9 +172,9 @@ a.text-primary:focus, a.text-primary:hover { color: var(--iq-primary) !important
 /*----------------------------------------------
 Background Color Opacity
 ------------------------------------------------*/
-.iq-bg-primary { background: var(--iq-light-primary) !important; color: var(--iq-primary) !important; }
+.iq-bg-primary { color: var(--iq-primary) !important; }
 .iq-bg-secondary { background: var(--iq-light-secondary) !important; color: var(--iq-secondary) !important; }
-.iq-bg-success { background: var(--iq-light-success) !important; color: var(--iq-success) !important; }
+.iq-bg-success { color: var(--iq-primary) !important; }
 .iq-bg-danger { background: var(--iq-light-danger) !important; color: var(--iq-danger) !important; }
 .iq-bg-warning { background: var(--iq-light-warning) !important; color: var(--iq-warning) !important; }
 .iq-bg-info { background: var(--iq-light-info) !important; color: var(--iq-info) !important; }
@@ -330,7 +330,7 @@ Buttons
 .btn-primary { background: var(--iq-primary); border-color: var(--iq-primary); }
 .btn-secondary { background-color: var(--iq-secondary); border-color: var(--iq-secondary); }
 .btn-success { background-color: var(--iq-success); border-color: var(--iq-success); }
-.btn-danger { background-color: var(--iq-danger); border-color: var(--iq-danger); }
+.btn-danger { background-color: var(--iq-primary); border-color: var(--iq-primary); }
 .btn-warning { background-color: var(--iq-warning); border-color: var(--iq-warning); }
 .btn-info { background-color: var(--iq-info); border-color: var(--iq-info); }
 .btn-light { background-color: var(--iq-light); border-color: var(--iq-light); }
