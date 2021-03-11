@@ -191,7 +191,7 @@ Sign In
 .sign-user_card { position: relative; background:#fff; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); padding: 25px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); display: block; margin: 0 auto; }
 .sign-user_logo { position: absolute; top: -56px; border-radius: 50%; padding: 10px; text-align: center; }
 .sign-user_logo img { height: 100px; width: 100px; border-radius: 50%; border: 2px solid white; }
-.sign-in-page .form-control, .m-profile .form-control { color: var(--iq-white); }
+.sign-in-page .form-control, .m-profile .form-control { color:gray }
 .sign-in-page .form-control:focus, .m-profile .form-control:focus { background: transparent; box-shadow: none; border: 1px solid var(--iq-primary); }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 color: #d9d5d5 !important; opacity: 1; /* Firefox */ }
