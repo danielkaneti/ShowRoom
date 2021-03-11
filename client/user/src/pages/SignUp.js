@@ -13,7 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from "axios";
-import { Redirect } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../redux/actions/usersActions';
 
 function Copyright() {
   return (
@@ -49,42 +51,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignUp() {
   const classes = useStyles();
   const [firstNameInput, setFirstNameInput] = useState('');
   const [lastNameInput, setLastNameInput] = useState('');
   const [usernameInput, setUsernameInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
+  
   const [flag, setflag] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
- 
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const onSubmit=e=>{
-    e.preventDefault()
-    const data={
-        username: usernameInput,
-        password: passwordInput,
-        firstName: firstNameInput,
-        lastName: lastNameInput,
-        email: emailInput
-    }
-    console.log(data)
-    axios.post('http://localhost:2222/users/',data).then( 
-        res=>{
-            console.log(res)
-            setflag(true)
-        }
-    ).catch(
-        err=>{
-          alert('Oi shit something happened: ' + err.response.data + ', error code: ' + err.response.status);
-        }
+
+
+
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      signUp(
+        firstNameInput,
+        lastNameInput,
+        usernameInput,
+        emailInput,
+        passwordInput,
+        history
+      )
+    );
+  }
+       
+       
      
-    )
-   
- }
- if(flag){
-  return <Redirect to ="/"/>;
-}
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

@@ -11,9 +11,15 @@ import {
 
 //Action creator - async using thunk
 
-export const signIn = (email, password) => async (dispatch) => {
-  const user = await axios.get(userByEmailURL(email));
-  if (user.data.length && password === user.data[0].password) {
+export const signIn = (email, password, history) => async (dispatch) => {
+  const data={
+    email: email,
+    password: password
+  };
+
+  try {
+    const user = await axios.post('http://localhost:2222/users/login',data);
+
     dispatch({
       type: "SIGN_IN",
       payload: {
@@ -21,26 +27,29 @@ export const signIn = (email, password) => async (dispatch) => {
         user: user.data[0],
       },
     });
-  }
-  else {
+
+    history.push('/');
+  } catch (error) {
     dispatch({
       type: "ERROR_SIGN_IN",
-    })
+    });
+    
+    alert(error.response.data);
   }
 };
 
-export const signUp = (firstName, lastName, username, email, password) => async (dispatch) => {
-  const response = await axios.post(
-    usersURL(),
-    {
-      firstName,
-      lastName,
-      username,
-      email,
-      password,
-    }
-  );
-  if (response.statusText === "OK") {
+export const signUp = (firstName, lastName, username, email, password, history) => async (dispatch) => {
+  try {
+    const response = await axios.post(
+      usersURL(),
+      {
+        firstName,
+        lastName,
+        username,
+        email,
+        password,
+      }
+    );
     dispatch({
       type: "SIGN_IN",
       payload: {
@@ -48,6 +57,9 @@ export const signUp = (firstName, lastName, username, email, password) => async 
         user: response.data,
       },
     });
+    history.push('/');
+  } catch (exception) {
+    alert(exception.response.data);
   }
 };
 
