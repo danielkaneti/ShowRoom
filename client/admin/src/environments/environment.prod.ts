@@ -10,8 +10,6 @@ export const environment = {
   countReviewsUrl: 'http://localhost:2222/reviews/countReviews',
   countUsersUrl: 'http://localhost:2222/users/countUsers',
   latestReviewsUrl: 'http://localhost:2222/reviews/latestReviews/6',
-  topRatedProductsUrl: 'http://localhost:2222/products/topProducts/15',
-  avgRatingByYear: 'http://localhost:2222/products/avgRatingByYear',
   countByGenre:'http://localhost:2222/products/countByGenre',
   countByYear:'http://localhost:2222/products/countByYear',
   userSearch: 'http://localhost:2222/users/getUserByParam',

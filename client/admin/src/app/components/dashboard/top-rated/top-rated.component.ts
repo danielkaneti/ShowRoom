@@ -34,16 +34,10 @@ export class TopRatedComponent implements OnInit {
                }
 
   ngOnInit(): void {
-    this.load();
     this.join();   
   }
   
-  load() {
-    this.productsService.topProductsByRating().subscribe(data => {
-      this.products = data;
-    });
-  }
-
+ 
   join(){
     this.chatservise.joinRoom(this.loginService.activeUser);
   }
