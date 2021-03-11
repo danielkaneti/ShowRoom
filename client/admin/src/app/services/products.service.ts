@@ -26,6 +26,11 @@ export class ProductsService {
     return this.http.get<Products[]>(this.productsUrl);
   }
 
+  topProductsByRating(): Observable<Products[]> {
+    return this.http.get<Products[]>(this.topRaUrl);
+  }
+
+
   deleteProduct(_id: number): Observable<Products> {
     const url = `${this.productsUrl}/${_id}`;
     return this.http.delete<Products>(url);
