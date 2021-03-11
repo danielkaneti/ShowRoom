@@ -9,7 +9,7 @@ export interface Statistics {
 
 export interface Statistics2 {
     
-    year:string,
-    avg_count: number
+    year: number,
+    count: number
 
 }

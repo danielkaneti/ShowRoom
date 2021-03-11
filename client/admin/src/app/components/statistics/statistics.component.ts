@@ -6,8 +6,6 @@ import { Statistics } from '../../models/statistics';
 import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 
 
-
-
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
@@ -58,19 +56,18 @@ export class StatisticsComponent implements OnInit {
 
     });
 
-    this.stat.getAvg().subscribe(res => {
+
+    this.stat.getCount().subscribe(res => {
 
       var year = res.map(o => o.year);
-      var countAvg = res.map(o => o.avg_count);
+      var count = res.map(o => o.count);
       this.barChartLabels = year;
-      this.barChartData = [{ data: countAvg, label: 'Avg' }]
+      this.barChartData = [{ data: count, label: 'Count' }]
+
 
     });
 
   }
-
-
-
   public colors: any = [{
     borderColor: 'black',
     backgroundColor: ["#f9f990",
