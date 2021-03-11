@@ -7,6 +7,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Navigation from './components/navigation';
 import {GeneralStyle} from './components/GeneralStyle';
+import chat from './components/chat';
 
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:2222");
@@ -19,6 +20,7 @@ function App() {
       <Navigation />
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/chat" exact component={chat} />
           <Route path="/catalog" component={Catalog} />
           <Route path="/catalog/:id" component={WineDetails} />
           <Route path="/signin" component={SignIn} />

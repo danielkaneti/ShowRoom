@@ -35,7 +35,7 @@ export default function Navigation() {
           <NavLink to="/catalog">
              <Button color="inherit">Catalog</Button>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/chat">
              <Button color="inherit">Chat With Us</Button>
           </NavLink>
           <NavLink to="/signin">

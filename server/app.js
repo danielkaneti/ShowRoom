@@ -31,9 +31,7 @@ io.on('connection', (socket) => {
   if (socket.handshake.headers.origin === "http://localhost:3000") {
     count++;
     socket.broadcast.emit('count', count);
-    socket.on('message', function (data) {
-      io.in(data.room).emit('new message', { user: data.user, message: data.message });
-    });
+   
 
     socket.on('disconnect', () => {
       count--;
@@ -41,6 +39,8 @@ io.on('connection', (socket) => {
 
     });
   }
+
+  
 });
 
 app.get('/', (req, res) => {
