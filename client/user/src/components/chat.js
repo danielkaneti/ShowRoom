@@ -20,7 +20,7 @@ const Container = styled.div`
   max-height: 500px;
   overflow: auto;
   width: 400px;
-  border: 1px solid lightgray;
+  border: 1px solid black;
   border-radius: 10px;
   padding-bottom: 10px;
   margin-top: 25px;
@@ -35,13 +35,13 @@ const TextArea = styled.textarea`
   padding-top: 10px;
   font-size: 17px;
   background-color: transparent;
-  border: 1px solid lightgray;
+  border: 1px solid black;
   outline: none;
   color: black;
   letter-spacing: 1px;
   line-height: 20px;
   ::placeholder {
-    color: lightgray;
+    color: black;
   }
 `;
 
