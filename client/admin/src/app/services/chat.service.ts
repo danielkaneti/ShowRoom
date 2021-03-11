@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {Socket} from 'ngx-socket-io';
 import { isObject } from 'rxjs/internal/util/isObject';
 import * as io from 'ngx-socket-io';
+import { Users } from '../models/users';
+import { addUser } from '../models/addUser';
 
 @Injectable({
   providedIn: 'root'
@@ -11,40 +13,40 @@ export class ChatService {
 
   constructor(private socket:Socket) { }
 
-  joinRoom(data){
-    this.socket.emit('join', data);
+  joinRoom(data: addUser){
+    this.socket.emit('joined_chat', {user: data});
   }
 
-  newUserJoin(){
-    let obs= new Observable<{user:String, message:String}>(ob=>{
-      this.socket.on('new user joind',(data)=> {
-        ob.next(data);
-      });
-      return ()=>{this.socket.disconnect();}
-    });
-    return obs;
-  }
+  // newUserJoin(){
+  //   let obs= new Observable<{user:Users, message:String}>(ob=>{
+  //     this.socket.on('joined_chat',(data)=> {
+  //       ob.next(data);
+  //     });
+  //     return ()=>{this.socket.disconnect();}
+  //   });
+  //   return obs;
+  // }
 
-  leaveRoom(data){
-    this.socket.emit('leave',data);
-  }
+  // leaveRoom(data){
+  //   this.socket.emit('leave',data);
+  // }
 
-  userLeftRoom(){
-    let obs= new Observable<{user:String, message:String}>(ob=>{
-      this.socket.on('left room',(data)=> {
-        ob.next(data);
-      });
-      return ()=>{this.socket.disconnect();}
-    });
-    return obs;
-  }
+  // userLeftRoom(){
+  //   let obs= new Observable<{user:String, message:String}>(ob=>{
+  //     this.socket.on('left room',(data)=> {
+  //       ob.next(data);
+  //     });
+  //     return ()=>{this.socket.disconnect();}
+  //   });
+  //   return obs;
+  // }
 
-  sendMessage(data){
-    this.socket.emit('message', data);
+  sendMessage(data: {user: addUser, message: string}){
+    this.socket.emit('message_sent', data);
   }
   newMessageRecived(){
-    let obs= new Observable<{user:String, message:String}>(ob=>{
-      this.socket.on('new message',(data)=> {
+    let obs= new Observable<{user:addUser, message:String}>(ob=>{
+      this.socket.on('message_received',(data)=> {
         ob.next(data);
       });
       return ()=>{this.socket.disconnect();}

@@ -14,6 +14,8 @@ import { Users } from '../models/users';
 
 export class LoginService {
 
+  public activeUser: addUser = null;
+
   private loginUrl= environment.loginUrl;
 
   constructor(private http: HttpClient) { }

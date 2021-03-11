@@ -7,6 +7,8 @@ import image2 from '../images/image2.jpeg';
 import image3 from '../images/image3.jpeg';
 import image4 from '../images/image4.jpeg';
 
+
+
 const options = {
   type: 'loop',
   gap: '1rem',
@@ -16,23 +18,29 @@ const options = {
   pauseOnHover: true,
   resetProgress: false,
   arrows: 'slider',
+  
 };
 
 const Home = () => {
 
 
     return(
-      <Splide options={ options }>
+      <Splide
+       options={ options }>
+<p>
+  djdjdjdjdjj
+</p>
       <SplideSlide   >
        
         <img src={image2} alt="Image 1" />
-    
+       
       </SplideSlide>
       <SplideSlide >
         <img src={image1} alt="Image 2"/>
       </SplideSlide>
       <SplideSlide >
         <img src={image3} alt="Image 2"/>
+       
       </SplideSlide>
       <SplideSlide >
         <img src={image4} alt="Image 2"/>
@@ -40,5 +48,6 @@ const Home = () => {
     </Splide>
     );
 }
+
 
 export default Home;

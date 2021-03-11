@@ -7,9 +7,14 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Navigation from './components/navigation';
 import {GeneralStyle} from './components/GeneralStyle';
+import chat from './components/chat';
+import { connectSocket } from './socket';
 
-import io from "socket.io-client";
-const socket = io.connect("http://localhost:2222");
+try {
+  connectSocket(); 
+} catch (error) {
+  console.log('Could not connect to socket', error);
+}
 
 function App() {
   return (
@@ -19,10 +24,11 @@ function App() {
       <Navigation />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/catalog" exact component={Catalog} />
-          <Route path="/catalog/:id" exact component={WineDetails} />
-          <Route path="/signin" exact component={SignIn} />
-          <Route path="/signup" exact component={SignUp} />
+          <Route path="/chat" exact component={chat} />
+          <Route path="/catalog" component={Catalog} />
+          <Route path="/catalog/:id" component={WineDetails} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
       </Switch>
       </BrowserRouter>
     </>
