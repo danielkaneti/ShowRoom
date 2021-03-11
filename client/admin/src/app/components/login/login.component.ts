@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
       
       if(data != null) {  
         
-        localStorage.setItem('isLoggedin', 'true') ;
+        // localStorage.setItem('isLoggedin', 'true') ;
+        this.loginservice.activeUser = data[0];
         this.rout.navigate(['/dashboard']);
       }
 

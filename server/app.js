@@ -28,15 +28,23 @@ const io = socketIo(httpClient, {
 
 let count = 0;
 io.on('connection', (socket) => {
-  if (socket.handshake.headers.origin === "http://localhost:3000") {
+  if (/*socket.handshake.headers.origin === "http://localhost:3000"*/true) {
     count++;
-    socket.broadcast.emit('count', count);
+    io.emit('count', count);
    
 
     socket.on('disconnect', () => {
       count--;
-      socket.broadcast.emit('count', count);
+      io.emit('count', count);
 
+    });
+
+    socket.on('joined_chat', (userObj) => {
+      io.emit('message_received', {user: userObj.user, message: "New user joined the chat - " + userObj.user.username});
+    });
+
+    socket.on('message_sent', (payload) => {
+      io.emit('message_received', payload);
     });
   }
 

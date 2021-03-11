@@ -8,9 +8,13 @@ import SignUp from './pages/SignUp';
 import Navigation from './components/navigation';
 import {GeneralStyle} from './components/GeneralStyle';
 import chat from './components/chat';
+import { connectSocket } from './socket';
 
-import io from "socket.io-client";
-const socket = io.connect("http://localhost:2222");
+try {
+  connectSocket(); 
+} catch (error) {
+  console.log('Could not connect to socket', error);
+}
 
 function App() {
   return (
