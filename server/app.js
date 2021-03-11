@@ -17,8 +17,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.json());
 
-const server = http.createServer(app);
-const io = socketIo(server, {
+const httpClient = http.createServer(app);
+const io = socketIo(httpClient, {
   cors: {
     origins: ["http://localhost:4200", "http://localhost:3000"],
     methods: ["GET", "POST"],
@@ -26,7 +26,7 @@ const io = socketIo(server, {
   }
 });
 
-const count = 0;
+let count = 0;
 io.on('connection', (socket) => {
   if (socket.handshake.headers.origin === "http://localhost:3000") {
     count++;
@@ -51,6 +51,5 @@ app.use('/reviews', reviewsRoute);
 app.use('/users', usersRoute);
 app.use('/products', productsRoute);
 
-const httpClient = http.createServer(app);
 httpClient.listen(2222);
 

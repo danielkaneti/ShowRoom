@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: 250,
     height: 450,
+    opacity: 0.7,
+    '&:hover' : {
+      cursor: 'pointer',
+      opacity: 1,
+    }
   },
   media: {
     height: 280,

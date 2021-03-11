@@ -14,7 +14,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useState } from 'react';
 import axios from "axios";
-import { Redirect } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { signIn } from '../redux/actions/usersActions';
 
 
 function Copyright() {
@@ -52,36 +54,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+
+    const dispatch = useDispatch();
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
     const [flag, setflag] = useState(false);
     const classes = useStyles();
+    const history = useHistory();
+
     const onSubmit=e=>{
         e.preventDefault()
-        const data={
-            email: emailInput,
-            password: passwordInput
-        }
-        axios.post('http://localhost:2222/users/login',data).then(
-            res=>{
-                console.log(res)
-                setflag(true)
-                alert('kama naim kama nifla. ha login shelha avad.');
-            }
-        ).catch(
-            err=>{
-                console.log(err.response)
-                // TODO - SHOW THIS TO MESSAGE SOMEHOW
-                alert('ohhh no. somthing go worng !!!!: ' + err.response.data + ', error code: ' + err.response.status);
-            }
-        )
-        console.log(data)
-       
-       
+        dispatch(signIn(emailInput, passwordInput, history));
      }
-     if(flag){
-      return <Redirect to ="/"/>;
-    }
+  
+    
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

@@ -5,25 +5,32 @@ import WineCard from '../components/WineCard';
 import {wineList} from '../data';
 import styled from 'styled-components';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+import {productsURL} from '../api/wine';
 
-  
 
 const Catalog = () => {
 
     const [products, setProducts] = useState([]);
     
     useEffect(() => {
-        axios.get("http://localhost:2222/products").then(resp => setProducts(resp.data))}, []);
+        axios.get(productsURL())
+        .then(resp => setProducts(resp.data))
+    }, []);
 
     return(
-        
-        <Container>
-            <Grid>
-                {products.map(wine => (
-                    <WineCard wine={wine}/>
-                ))}
-            </Grid>
-        </Container>
+        <Backgroung>
+            <Container>
+                <Grid>
+                    {products.map(wine => (
+                        <NavLink to={`/catalog/${wine._id}`}>
+                            <WineCard wine={wine}/>
+                        </NavLink>
+                    ))}
+                </Grid>
+            </Container>
+        </Backgroung>
+   
     );
 }
 
@@ -36,6 +43,14 @@ const Grid = styled.div`
   margin-left: 110px;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
+`;
+
+const Backgroung = styled.div`
+    background: #d9d9d9;
+`;
+
+const NavLink = styled(Link)`
+    text-decoration: none;
 `;
 
 export default Catalog;
