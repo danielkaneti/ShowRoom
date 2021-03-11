@@ -128,7 +128,15 @@ const countByGenre = async (req, res) => {
     });
     res.json(newGenresCount);
 };
+const countByYear = async (req, res) => {
+    const yearCount = await productsService.countByYear();
 
+    var newYearCount = []
+    Object.keys(yearCount).forEach(function(key) {
+        newYearCount.push({'year': yearCount[key]['_id'], 'count': yearCount[key]['count']})
+    });
+    res.json(yearCount);
+};
 
 const productsByGenre = async (req, res) => {
     const productsByGenre = await productsService.productsByGenre();
@@ -270,6 +278,7 @@ module.exports = {
     topProductsByRating,
     getProductsByGenre,
     countByGenre,
+    countByYear,
     avgRatingByYear,
     scrapeProductsFromWinery,
     productsByGenre,

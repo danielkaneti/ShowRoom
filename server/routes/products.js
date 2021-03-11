@@ -31,11 +31,11 @@ router.route('/title/:productTitle')
 router.route('/countByGenre')
     .get(productController.countByGenre);
 
+router.route('/countByYear')
+    .get(productController.countByYear);
+
 router.route('/productsByGenre')
     .get(productController.productsByGenre);
-
-router.route('/avgRatingByYear')
-    .get(productController.avgRatingByYear);
 
 router.route('/:productId')
     .get(productController.getProductById)

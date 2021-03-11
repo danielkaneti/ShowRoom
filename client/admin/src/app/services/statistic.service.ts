@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 export class StatisticService {
 
   private statCountUrl = environment.countStatics;
-  private statAvgUrl= environment.avgStatics;
+  private yearUrl = environment.countYearStatics;
 
   constructor(private http: HttpClient) { }
 
@@ -23,8 +23,8 @@ export class StatisticService {
   getSta(): Observable<Statistics[]> {
     return this.http.get<Statistics[]>(this.statCountUrl);
   }
-  getAvg(): Observable<Statistics2[]>{
-    return this.http.get<Statistics2[]>(this.statAvgUrl);
+  
+  getCount():  Observable<Statistics2[]>{
+    return this.http.get<Statistics2[]>(this.yearUrl);
   }
-
 }

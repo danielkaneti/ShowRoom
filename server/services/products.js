@@ -87,6 +87,23 @@ const countByGenre = async () => {
     ]);
 };
 
+const countByYear = async () => {
+    return Products.aggregate([
+        {
+            $group: {
+                _id: "$year",
+                count: {$sum: 1}
+            }
+        },
+        {
+            $sort: {count:-1}
+        },
+        {
+            $limit:6
+        }
+    ]);
+};
+
 
 const productsByGenre = async () => {
     return Products.aggregate([
@@ -301,6 +318,7 @@ module.exports = {
     getReviewsByProductId,
     getProductsByGenre,
     countByGenre,
+    countByYear,
     avgRatingByYear,
     removeProductReviews,
     productsByGenre
