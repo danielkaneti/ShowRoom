@@ -5,17 +5,23 @@ import WineCard from '../components/WineCard';
 import {wineList} from '../data';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {Link} from 'react-router-dom';
-import {productsURL} from '../api/wine';
+import {productsURL, searchedProductURL} from '../api/wine';
 import SearchInput from '../components/SearchInput';
+import { loadSearchedProduct } from '../redux/actions/productActions';
+
 
 
 const Catalog = () => {
 
-    const [products, setProducts] = useState([]);
+    //const [products, setProducts] = useState([]);
     const [titleInput, setTitleInput] = useState("");
     const [genreInput, setGenreInput] = useState("");
     const [yearInput, setYearInput] = useState("");
+    const dispatch = useDispatch();
+    const searchedProducts = useSelector(state => state.product.searchedProducts);
     const handleTitleInput = (e) => {
         setTitleInput(e.target.value)
       };
@@ -27,10 +33,15 @@ const Catalog = () => {
       const handleYearInput = (e) => {
         setYearInput(e.target.value)
       };
+    // useEffect(() => {
+    //     axios.get(productsURL())
+    //     .then(resp => setProducts(resp.data))
+    // }, []);
+    
+   
     useEffect(() => {
-        axios.get(productsURL())
-        .then(resp => setProducts(resp.data))
-    }, []);
+        dispatch(loadSearchedProduct(titleInput, genreInput, yearInput));
+      }, [titleInput, genreInput, yearInput])
 
     return(
 
@@ -44,7 +55,7 @@ const Catalog = () => {
             <Container>
                 <Grid>
                 
-                    {products.map(wine => (
+                    {searchedProducts.map(wine => (
                         <NavLink to={`/catalog/${wine._id}`}>
                             <WineCard wine={wine}/>
                         </NavLink>
