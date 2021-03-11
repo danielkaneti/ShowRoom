@@ -1,10 +1,19 @@
 const usersService = require('../services/users');
 const reviewService = require('../services/reviews');
+const e = require('express');
 
 
 const createUser = async (req, res) => {
-    const newuser = await usersService.createUser(req.body);
-    res.json(newuser);
+    try {
+        const newuser = await usersService.createUser(req.body);   
+        res.json(newuser);
+    } catch (error) {
+        if (error.message.startsWith('E11000')) {
+            res.status(500).send('Registration failed - username or email already exists!');
+        } else {
+            res.status(500).send('An unknown error has occurred in the registration!');
+        }
+    }
 };
 
 

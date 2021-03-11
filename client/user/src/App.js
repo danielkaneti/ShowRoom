@@ -19,10 +19,10 @@ function App() {
       <Navigation />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/catalog" component={Catalog} />
-          <Route path="/catalog/:id" component={WineDetails} />
-          <Route path="/signin" component={SignIn} />
-          <Route path="/signup" component={SignUp} />
+          <Route path="/catalog" exact component={Catalog} />
+          <Route path="/catalog/:id" exact component={WineDetails} />
+          <Route path="/signin" exact component={SignIn} />
+          <Route path="/signup" exact component={SignUp} />
       </Switch>
       </BrowserRouter>
     </>
