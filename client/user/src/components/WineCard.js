@@ -42,7 +42,6 @@ export default function WineCard({wine, onWatchClick}) {
   return (
     <Card className={classes.root}>
       <CardHeader
-
         title={title}
         subheader={genre}
       />
@@ -51,19 +50,6 @@ export default function WineCard({wine, onWatchClick}) {
         image={image_url}
         title="Paella dish"
       />
-      {/* <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This is a template
-        </Typography>
-      </CardContent> */}
-
-       {/* <div size="small" color="inherit" onClick={handleWatchClick}>
-          Detailes
-        </div>*/}
-
-      <CardActions disableSpacing>
-
-      </CardActions>
     </Card>
   );
 }
