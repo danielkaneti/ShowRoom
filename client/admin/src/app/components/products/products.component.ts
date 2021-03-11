@@ -43,7 +43,6 @@ export class ProductsComponent implements OnInit {
 
   editProduct(id: number) {
     this.rout.navigate(['/products', id]);
-    //console.log(this.rout.navigate(['/products', id]));
   }
 
   searchProduct() {
