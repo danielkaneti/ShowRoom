@@ -1874,7 +1874,7 @@ $(document).ready(function() {
           chart: {
           type: 'bar',
           height: 230,
-          foreColor: '#D1D0CF'
+          foreColor: '#000000'
         },
         plotOptions: {
           bar: {

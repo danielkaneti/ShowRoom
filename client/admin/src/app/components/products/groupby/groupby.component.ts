@@ -16,19 +16,12 @@ export class GroupbyComponent implements OnInit {
   ngOnInit(): void {
     this.load();
   }
-  
-//'Science Fiction', 'Thriller', 'Crime', 'Action', 'Comedy']
+
   load(){
 
     this.productservice.getProductsByGenre().subscribe(data=>{
       this.products=data;
 
-      // var product= data['products'].map(a=>this.product=product);
-     
-      
-      
-      // console.log(this.products);
-      // console.log(this.products.products);
       
     });
 
