@@ -27,9 +27,7 @@ const Home = () => {
     return(
       <Splide
        options={ options }>
-<p>
-  djdjdjdjdjj
-</p>
+
       <SplideSlide   >
        
         <img src={image2} alt="Image 1" />
