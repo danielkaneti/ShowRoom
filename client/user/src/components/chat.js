@@ -37,7 +37,7 @@ const TextArea = styled.textarea`
   background-color: transparent;
   border: 1px solid lightgray;
   outline: none;
-  color: lightgray;
+  color: black;
   letter-spacing: 1px;
   line-height: 20px;
   ::placeholder {
@@ -84,7 +84,7 @@ const PartnerRow = styled(MyRow)`
 const PartnerMessage = styled.div`
   width: 45%;
   background-color: transparent;
-  color: lightgray;
+  color: black;
   border: 1px solid lightgray;
   padding: 10px;
   margin-left: 5px;
