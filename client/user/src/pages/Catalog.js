@@ -48,9 +48,9 @@ const Catalog = () => {
         
         <Backgroung>
             <StyledSearchDiv>
-                <SearchInput placeholder="Title..." onChange={handleTitleInput} />
-                <SearchInput placeholder="Genre..." onChange={handleGenreInput} />
-                <SearchInput placeholder="Year..." onChange={handleYearInput} />
+                <SearchInput placeholder="Title" onChange={handleTitleInput} />
+                <SearchInput placeholder="Grape type" onChange={handleGenreInput} />
+                <SearchInput placeholder="Year" onChange={handleYearInput} />
             </StyledSearchDiv>
             <Container>
                 <Grid>
