@@ -53,6 +53,4 @@ export class ChatService {
     });
     return obs;
   }
-
-
 }
