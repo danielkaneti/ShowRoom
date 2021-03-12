@@ -43,6 +43,12 @@ const WineDetails = () => {
   const history = useHistory();
   const userLogged = useSelector(state => state.user.user);
 
+  const [reviews, setReviews] = useState([]);
+    
+  useEffect(() => {
+      axios.get("http://localhost:2222/reviews").then(resp => setReviews(resp.data))}, []);
+
+
   const location = useLocation();
   const wineId = decodeURI(location.pathname.split("/")[2]);
 
@@ -86,7 +92,7 @@ const WineDetails = () => {
           })
           console.log(reviewInput)
         setReviewInput("");
-      
+     
        
       }
          
@@ -127,8 +133,14 @@ const WineDetails = () => {
         <Button>Send</Button>
          
       </form>
-        <Review />
-        <Review />
+      <div>
+      {reviews.map(review => (
+        <Review review={review}/>
+       ))}
+
+      </div>
+              
+
       </SplitRight>
     </Container>
   );
