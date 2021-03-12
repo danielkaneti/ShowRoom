@@ -38,16 +38,14 @@ const useStyles = makeStyles((theme) => ({
 const WineDetails = () => {
 
   const classes = useStyles();
+
   const [reviewInput, setReviewInput] = useState('');
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const userLogged = useSelector(state => state.user.user);
-
   const [reviews, setReviews] = useState([]);
-    
-  useEffect(() => {
-      axios.get("http://localhost:2222/reviews").then(resp => setReviews(resp.data))}, []);
 
+  useEffect(() => {
+    axios.get("http://localhost:2222/reviews").then(resp => setReviews(resp.data))}, []);
+
+  const userLogged = useSelector(state => state.user.user);
 
   const location = useLocation();
   const wineId = decodeURI(location.pathname.split("/")[2]);
@@ -59,10 +57,6 @@ const WineDetails = () => {
      year: 0,
      description: ''
   });
-
-  
-  
-    console.log(wineId);
 
     useEffect(() => {
       async function doSomething() {
@@ -124,13 +118,13 @@ const WineDetails = () => {
             required
             fullWidth
             id="Reviews"
-            label="Review"
+            label="Leave a review.."
             name="Review"
-            autoComplete="Reviews"
+         
             autoFocus
             onChange={(event)=>{setReviewInput(event.target.value);}}
           />
-        <Button>Send</Button>
+        <Button>Submit</Button>
          
       </form>
       <div>
