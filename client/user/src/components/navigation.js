@@ -53,12 +53,23 @@ export default function Navigation() {
           <NavLink to="/">
               <Button color="inherit">Home</Button>
           </NavLink>
-          <NavLink to="/catalog">
-             <Button color="inherit">Catalog</Button>
-          </NavLink>
-          <NavLink to="/chat">
+          {toggle ?
+            (
+              <NavLink to="/catalog">
+              <Button color="inherit">Catalog</Button>
+           </NavLink>):(
+                <h3></h3>
+             )}
+        
+       
+          {toggle ?
+            (
+              <NavLink to="/chat">
              <Button color="inherit">Chat With Us</Button>
-          </NavLink>
+             </NavLink>):(
+                <h3></h3>
+             )}
+        
           {toggle ?
             (
               <NavLink to="/">
