@@ -26,24 +26,117 @@ const Home = () => {
 
     return(
       <Splide
-       options={ options }>
-
+      
+      options={ options }>
       <SplideSlide   >
+      <div style={{
+      position: 'absolute', 
+      color: 'white', 
+      top: 100, 
+      left: '50%', 
+      transform: 'translateX(-50%)',
+      fontFamily: 'Arial',
+      fontWeight: 'bold',
+      fontSize: 40,
+      }} >Welcome to Show Room
+      </div>
+      <div style={{
+      position: 'absolute', 
+      color: 'white', 
+      top: 155, 
+      left: '50%', 
+      transform: 'translateX(-50%)',
+      fontFamily: 'Arial',
+      fontWeight: 'bold',
+      fontSize: 20,
+      }} >Here you will find the best wine in Israel.
+      </div>
        
         <img src={image2} alt="Image 1" />
        
       </SplideSlide>
       <SplideSlide >
+      <div style={{
+      position: 'absolute', 
+      color: 'white', 
+      top: 100, 
+      left: '50%', 
+      transform: 'translateX(-50%)',
+      fontFamily: 'Arial',
+      fontWeight: 'bold',
+      fontSize: 40,
+      }} >Welcome to Show Room
+      </div>
+      <div style={{
+      position: 'absolute', 
+      color: 'white', 
+      top: 155, 
+      left: '50%', 
+      transform: 'translateX(-50%)',
+      fontFamily: 'Arial',
+      fontSize: 20,
+      }} >Here you will find the best wine in Israel.
+      </div>
+
         <img src={image1} alt="Image 2"/>
       </SplideSlide>
       <SplideSlide >
+
+      <div style={{
+      position: 'absolute', 
+      color: 'white', 
+      top: 100, 
+      left: '50%', 
+      transform: 'translateX(-50%)',
+      fontFamily: 'Arial',
+      fontWeight: 'bold',
+      fontSize: 40,
+      }} >Welcome to Show Room
+      </div>
+      <div style={{
+      position: 'absolute', 
+      color: 'white', 
+      top: 155, 
+      left: '50%', 
+      transform: 'translateX(-50%)',
+      fontFamily: 'Arial',
+      fontSize: 20,
+      }} >Here you will find the best wine in Israel.
+      </div>
+
         <img src={image3} alt="Image 2"/>
        
       </SplideSlide>
       <SplideSlide >
+
+      <div style={{
+      position: 'absolute', 
+      color: 'white', 
+      top: 100, 
+      left: '50%', 
+      transform: 'translateX(-50%)',
+      fontFamily: 'Arial',
+      fontSize: 40,
+      }} >Welcome to Show Room
+      </div>
+      <div style={{
+      position: 'absolute', 
+      color: 'white', 
+      top: 155, 
+      left: '50%', 
+      transform: 'translateX(-50%)',
+      fontFamily: 'Arial',
+      fontSize: 20,
+      }} >Here you will find the best wine in Israel.
+      </div>
+
         <img src={image4} alt="Image 2"/>
+
       </SplideSlide>
+
     </Splide>
+
+    
     );
 }
 
