@@ -3,9 +3,7 @@ const Schema = mongoose.Schema;
 
 const Reviews = new Schema({
     
-    reviewTitle: String,
     reviewContent: String,
-    rating: Number,
     lastUpdated: {
         type: Date,
         default: Date.now

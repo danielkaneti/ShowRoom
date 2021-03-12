@@ -13,6 +13,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import styled from 'styled-components';
 import { useLocation } from 'react-router';
 import axios from 'axios';
+import { reviewsURL } from '../api/reviews';
 import { getWineURL, productsURL } from '../api/wine';
 import Review from '../components/Review';
 import { TextField } from '@material-ui/core';
@@ -40,6 +41,7 @@ const WineDetails = () => {
   const [reviewInput, setReviewInput] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
+  const userLogged = useSelector(state => state.user.user);
 
   const location = useLocation();
   const wineId = decodeURI(location.pathname.split("/")[2]);
@@ -68,13 +70,24 @@ const WineDetails = () => {
 
      
       const onSubmit = (e) => {
+
         e.preventDefault();
-        dispatch(
-          WineDetails(
-            reviewInput,
-            history
-          )
-        );
+       
+        axios.post(
+          reviewsURL(),
+          {
+            reviewContent: reviewInput,
+            products: { _id: wineId },
+            users: { _id: userLogged._id },
+          })
+          .then((response) => {
+           
+            return response.data;
+          })
+          console.log(reviewInput)
+        setReviewInput("");
+      
+       
       }
          
   return (
