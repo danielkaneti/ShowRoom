@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 280,
-    paddingTop: '100%', // 16:9
+    padding: '10px 0',
     objectFit: 'cover'
   },
 }));
@@ -39,10 +39,10 @@ export default function Review({wine, onWatchClick}) {
     onWatchClick(wine);
   }
 
-  const {title, genre, image_url} = wine;
+
 
   return (
-    <Paper style={{ padding: "40px 20px", marginTop: 100, position: 'right' }}>
+    <Paper style={{ padding: "40px 20px", marginTop: 10, position: 'right' }}>
         <Grid container wrap="nowrap" spacing={2}>
 
           <Grid justifyContent="left" item xs zeroMinWidth>

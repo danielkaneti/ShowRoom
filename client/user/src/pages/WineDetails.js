@@ -14,47 +14,34 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 import { getWineURL, productsURL } from '../api/wine';
+import Review from '../components/Review';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 750,
-    height: 900,
-
-    
+    width: '100%',
+    height: '100%',
+    borderRadius: '0',
   },
   media: {
     height: 0,
     paddingTop: '100%', // 16:9
-    objectFit: 'cover'
+    objectFit: 'contain'
   },
 }));
 
-const styles = 
-{
-
-media: {
-  height: 0,
-  paddingTop: '100%', // 16:9,
-  marginTop:'0'
-}
-  };
-
 const WineDetails = () => {
 
-   const [wineDetails, setWineDetails] = useState({
+  const classes = useStyles();
+  const location = useLocation();
+  const wineId = decodeURI(location.pathname.split("/")[2]);
+
+  const [wineDetails, setWineDetails] = useState({
      image_url: '',
      title: 'loading',
      genre: '',
      year: 0,
      description: ''
-   });
-
-
-
-    const classes = useStyles();
-
-    const location = useLocation();
-    const wineId = decodeURI(location.pathname.split("/")[2]);
+  });
   
     console.log(wineId);
 
@@ -69,11 +56,12 @@ const WineDetails = () => {
 
   return (
       
-    <Card className={classes.root}>
+    <Container>
+      <SplitLeft>
+      <Card className={classes.root}>
       <CardHeader
         title={wineDetails.title}
         subheader={wineDetails.genre}
-
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -85,9 +73,33 @@ const WineDetails = () => {
         image={wineDetails.image_url}
       />
     </Card>
-
-    
+      </SplitLeft>
+      <SplitRight>
+        <Review />
+        <Review />
+        <Review />
+        <Review />
+      </SplitRight>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+const SplitLeft = styled.div`
+  width: 50%;
+`;
+
+const SplitRight = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align items: center;
+  justify-content: center;
+  padding: 1rem;
+`;
 
 export default WineDetails;
