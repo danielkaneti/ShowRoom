@@ -28,3 +28,4 @@ export const subscribeToChat = (user, callback) => {
 export const sendMessageOnChat = (user, message) => {
   if (socket) socket.emit('message_sent', { user: user, message: message });
 }
+

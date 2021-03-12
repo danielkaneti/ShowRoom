@@ -35,21 +35,15 @@ const getReviewsProductsUsers = async (req, res) => {
 
 const searchReview = async (req, res) => {
 
-    var [title, rating, user] = req.params.param.split('=');
+    var [user] = req.params.param.split('=');
 
-    if(title === ''){
-        title =  null
-    }
 
     if(user === ''){
         user =  null
     }
 
-    if(rating === ''){
-        rating =  NaN
-    }
 
-    const reviews = await reviewsService.searchReview(title, rating, user);
+    const reviews = await reviewsService.searchReview(user);
 
     if (!reviews){
         return res.status(404).json({errors: ['reviews not found']});
@@ -90,31 +84,6 @@ const getReviewById = async (req, res) => {
     res.json(review);
 };
 
-
-const getReviewsByTitleRatingUsername = async (req, res) => {
-
-    var [productTitle, rating, userName] = req.params.param.split('=');
-
-    if(productTitle === ''){
-        productTitle =  null
-    }
-
-    if(userName === ''){
-        userName =  null
-    }
-
-    if(rating === ''){
-        rating =  NaN
-    }
-
-    const allReviews = await reviewsService.getReviewsProductsUsers(productTitle, rating, userName);
-
-    if (!allReviews){
-        return res.status(404).json({errors: ['reviews not found']});
-    }
-
-    res.json(allReviews);
-};
 
 
 const updateReview = async (req, res) => {
@@ -167,7 +136,6 @@ module.exports = {
     getReviewById,
     updateReview,
     deleteReview,
-    getReviewsByTitleRatingUsername,
     countReviews,
     topReviewsByDate,
     getReviewsByProductId,

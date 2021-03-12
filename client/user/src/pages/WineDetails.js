@@ -15,6 +15,9 @@ import { useLocation } from 'react-router';
 import axios from 'axios';
 import { getWineURL, productsURL } from '../api/wine';
 import Review from '../components/Review';
+import { TextField } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,11 +30,16 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '100%', // 16:9
     objectFit: 'contain'
   },
+
 }));
 
 const WineDetails = () => {
 
   const classes = useStyles();
+  const [reviewInput, setReviewInput] = useState('');
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const location = useLocation();
   const wineId = decodeURI(location.pathname.split("/")[2]);
 
@@ -42,6 +50,8 @@ const WineDetails = () => {
      year: 0,
      description: ''
   });
+
+  
   
     console.log(wineId);
 
@@ -53,6 +63,22 @@ const WineDetails = () => {
 
       doSomething();
     }, []);
+
+
+     
+      const onSubmit = (e) => {
+        e.preventDefault();
+        dispatch(
+          WineDetails(
+            reviewInput,
+            history
+          )
+        );
+      }
+         
+
+    
+      
 
   return (
       
@@ -75,6 +101,22 @@ const WineDetails = () => {
     </Card>
       </SplitLeft>
       <SplitRight>
+      <form className={classes.form} noValidate onSubmit={onSubmit}>
+      <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="Reviews"
+            label="Review"
+            name="Review"
+            autoComplete="Reviews"
+            autoFocus
+            onChange={(event)=>{setReviewInput(event.target.value);}}
+          />
+        <Button>Send</Button>
+         
+      </form>
         <Review />
         <Review />
         <Review />
@@ -100,6 +142,39 @@ const SplitRight = styled.div`
   align items: center;
   justify-content: center;
   padding: 1rem;
+`;
+
+const TextArea = styled.textarea`
+  width: 98%;
+  height: 100px;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 17px;
+  background-color: transparent;
+  border: 1px solid black;
+  outline: none;
+  color: black;
+  letter-spacing: 1px;
+  line-height: 20px;
+  ::placeholder {
+    color: black;
+  }
+`;
+
+const Button = styled.button`
+  background-color: black;
+  width: 100%;
+  border: none;
+  height: 50px;
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+`;
+
+const Form = styled.form`
+  width: 400px;
 `;
 
 export default WineDetails;
