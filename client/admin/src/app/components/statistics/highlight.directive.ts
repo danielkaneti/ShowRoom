@@ -9,7 +9,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 export class HighlightDirective {
 
   constructor(el: ElementRef) {
-    el.nativeElement.style.backgroundColor = "black";
+    el.nativeElement.style.backgroundColor = "#585858";
  }
  
 }
