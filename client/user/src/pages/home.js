@@ -47,7 +47,6 @@ const Home = () => {
       left: '50%', 
       transform: 'translateX(-50%)',
       fontFamily: 'Arial',
-      fontWeight: 'bold',
       fontSize: 20,
       }} >Here you will find the best wine in Israel.
       </div>
@@ -116,6 +115,7 @@ const Home = () => {
       left: '50%', 
       transform: 'translateX(-50%)',
       fontFamily: 'Arial',
+      fontWeight: 'bold',
       fontSize: 40,
       }} >Welcome to Show Room
       </div>
