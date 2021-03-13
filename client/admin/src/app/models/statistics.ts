@@ -9,7 +9,7 @@ export interface Statistics {
 
 export interface Statistics2 {
     
-    year: number,
+    _id: number,
     count: number
 
 }
