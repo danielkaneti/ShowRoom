@@ -14,6 +14,7 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 import { reviewsURL } from '../api/reviews';
+import { reviewsByProductIdURL } from '../api/reviews';
 import { getWineURL, productsURL } from '../api/wine';
 import Review from '../components/Review';
 import { TextField } from '@material-ui/core';
@@ -43,7 +44,7 @@ const WineDetails = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:2222/reviews").then(resp => setReviews(resp.data))}, []);
+    axios.get(reviewsByProductIdURL(wineId)).then(resp => setReviews(resp.data))}, []);
 
   const userLogged = useSelector(state => state.user.user);
 
@@ -72,7 +73,8 @@ const WineDetails = () => {
       const onSubmit = (e) => {
 
         e.preventDefault();
-       
+        console.log(userLogged);
+
         axios.post(
           reviewsURL(),
           {
