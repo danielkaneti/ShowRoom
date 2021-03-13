@@ -83,11 +83,8 @@ const WineDetails = () => {
           .then((response) => {
            
             return response.data
-            
-
           })
           console.log(reviewInput)
-          this.forceUpdate();
           setReviewInput("");
         
      
