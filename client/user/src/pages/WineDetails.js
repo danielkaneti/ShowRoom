@@ -39,25 +39,24 @@ const useStyles = makeStyles((theme) => ({
 const WineDetails = () => {
 
   const classes = useStyles();
+  const location = useLocation();
+  const wineId = decodeURI(location.pathname.split("/")[2]);
+  const userLogged = useSelector(state => state.user.user);
 
   const [reviewInput, setReviewInput] = useState('');
   const [reviews, setReviews] = useState([]);
+  const [wineDetails, setWineDetails] = useState({
+    image_url: '',
+    title: 'loading',
+    genre: '',
+    year: 0,
+    description: ''
+ });
 
   useEffect(() => {
-    axios.get(reviewsByProductIdURL(wineId)).then(resp => setReviews(resp.data))}, []);
+    axios.get(reviewsByProductIdURL(wineId)).then(resp => setReviews(resp.data))
+  }, []);
 
-  const userLogged = useSelector(state => state.user.user);
-
-  const location = useLocation();
-  const wineId = decodeURI(location.pathname.split("/")[2]);
-
-  const [wineDetails, setWineDetails] = useState({
-     image_url: '',
-     title: 'loading',
-     genre: '',
-     year: 0,
-     description: ''
-  });
 
     useEffect(() => {
       async function doSomething() {
@@ -83,13 +82,11 @@ const WineDetails = () => {
             users: { _id: userLogged._id },
           })
           .then((response) => {
-           
-            return response.data;
+            delete response.data["users"];
+            response.data["user"] = userLogged;
+            setReviews([response.data].concat(reviews));
           })
-          console.log(reviewInput)
-        setReviewInput("");
-     
-       
+          setReviewInput("");
       }
          
   return (
@@ -156,7 +153,7 @@ const SplitRight = styled.div`
   display: flex;
   flex-direction: column;
   align items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 1rem;
 `;
 
