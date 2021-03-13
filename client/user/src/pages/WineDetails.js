@@ -84,10 +84,14 @@ const WineDetails = () => {
           })
           .then((response) => {
            
-            return response.data;
+            return response.data
+            
+
           })
           console.log(reviewInput)
-        setReviewInput("");
+          this.forceUpdate();
+          setReviewInput("");
+        
      
        
       }
@@ -122,9 +126,9 @@ const WineDetails = () => {
             id="Reviews"
             label="Leave a review.."
             name="Review"
-         
             autoFocus
             onChange={(event)=>{setReviewInput(event.target.value);}}
+            value={reviewInput}
           />
         <Button>Submit</Button>
          

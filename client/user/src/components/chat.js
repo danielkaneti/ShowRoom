@@ -142,7 +142,8 @@ const Chat = () => {
         })}
       </Container>
       <Form onSubmit={sendMessage}>
-        <TextArea value={message.message} onChange={handleChange} placeholder="Say something..." />
+        <TextArea value={message.message} onChange={handleChange} placeholder="Say something..." value={message} />
+        
         <Button>Send</Button>
       </Form>
     </Page>
