@@ -1829,7 +1829,6 @@ $(document).ready(function() {
           type: 'donut',
         },
         colors:['#e20e02','#83878a', '#007aff','#f68a04', '#14e788','#545e75'],
-        labels: ['Actions', 'Comedy', 'Harror', 'Drama', 'Kids','Thrilled'],
         dataLabels: {
           enabled: false
         },
