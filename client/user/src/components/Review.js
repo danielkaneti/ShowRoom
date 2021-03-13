@@ -12,7 +12,8 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import styled from 'styled-components';
 import { Divider, Grid, Paper } from "@material-ui/core";
-import { positions } from '@material-ui/system';
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,13 +32,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Review({wine, onWatchClick}) {
+export default function Review({review}) {
   const classes = useStyles();
 
-  const handleWatchClick = (e) => {
-    e.preventDefault();
-    onWatchClick(wine);
-  }
+  
+  const {reviewContent, user} = review;
 
 
 
@@ -46,17 +45,10 @@ export default function Review({wine, onWatchClick}) {
         <Grid container wrap="nowrap" spacing={2}>
 
           <Grid justifyContent="left" item xs zeroMinWidth>
-            <h4 style={{ margin: 0, textAlign: "left" }}>Michel Michel</h4>
+            <h4 style={{ margin: 0, textAlign: "left" }}>{user.firstName} {user.lastName}</h4>
             <p style={{ textAlign: "left" }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              luctus ut est sed faucibus. Duis bibendum ac ex vehicula laoreet.
-              Suspendisse congue vulputate lobortis. Pellentesque at interdum
-              tortor. Quisque arcu quam, malesuada vel mauris et, posuere
-              sagittis ipsum. Aliquam ultricies a ligula nec faucibus. In elit
-              metus, efficitur lobortis nisi quis, molestie porttitor metus.
-              Pellentesque et neque risus. Aliquam vulputate, mauris vitae
-              tincidunt interdum, mauris mi vehicula urna, nec feugiat quam
-              lectus vitae ex.{" "}
+              
+            {reviewContent}
             </p>
      
           </Grid>

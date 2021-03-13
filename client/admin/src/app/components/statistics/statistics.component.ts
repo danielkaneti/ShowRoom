@@ -59,8 +59,9 @@ export class StatisticsComponent implements OnInit {
 
     this.stat.getCount().subscribe(res => {
 
-      var year = res.map(o => o.year);
+      var year = res.map(o => o._id);
       var count = res.map(o => o.count);
+      
       this.barChartLabels = year;
       this.barChartData = [{ data: count, label: 'Count' }]
 

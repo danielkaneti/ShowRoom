@@ -13,25 +13,41 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import styled from 'styled-components';
 import { useLocation } from 'react-router';
 import axios from 'axios';
+import { reviewsURL } from '../api/reviews';
+import { reviewsByProductIdURL } from '../api/reviews';
 import { getWineURL, productsURL } from '../api/wine';
 import Review from '../components/Review';
+import { TextField } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     height: '100%',
     borderRadius: '0',
+    paddingTop :'0%'
   },
   media: {
     height: 0,
     paddingTop: '100%', // 16:9
     objectFit: 'contain'
   },
+
 }));
 
 const WineDetails = () => {
 
   const classes = useStyles();
+
+  const [reviewInput, setReviewInput] = useState('');
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    axios.get(reviewsByProductIdURL(wineId)).then(resp => setReviews(resp.data))}, []);
+
+  const userLogged = useSelector(state => state.user.user);
+
   const location = useLocation();
   const wineId = decodeURI(location.pathname.split("/")[2]);
 
@@ -42,8 +58,6 @@ const WineDetails = () => {
      year: 0,
      description: ''
   });
-  
-    console.log(wineId);
 
     useEffect(() => {
       async function doSomething() {
@@ -54,6 +68,30 @@ const WineDetails = () => {
       doSomething();
     }, []);
 
+
+     
+      const onSubmit = (e) => {
+
+        e.preventDefault();
+        console.log(userLogged);
+
+        axios.post(
+          reviewsURL(),
+          {
+            reviewContent: reviewInput,
+            products: { _id: wineId },
+            users: { _id: userLogged._id },
+          })
+          .then((response) => {
+           
+            return response.data;
+          })
+          console.log(reviewInput)
+        setReviewInput("");
+     
+       
+      }
+         
   return (
       
     <Container>
@@ -75,10 +113,30 @@ const WineDetails = () => {
     </Card>
       </SplitLeft>
       <SplitRight>
-        <Review />
-        <Review />
-        <Review />
-        <Review />
+      <form className={classes.form} noValidate onSubmit={onSubmit}>
+      <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="Reviews"
+            label="Leave a review.."
+            name="Review"
+            autoFocus
+            value={reviewInput}
+            onChange={(event)=>{setReviewInput(event.target.value);}}
+          />
+        <Button>Submit</Button>
+         
+      </form>
+      <div>
+      {reviews.map(review => (
+        <Review review={review}/>
+       ))}
+
+      </div>
+              
+
       </SplitRight>
     </Container>
   );
@@ -100,6 +158,39 @@ const SplitRight = styled.div`
   align items: center;
   justify-content: center;
   padding: 1rem;
+`;
+
+const TextArea = styled.textarea`
+  width: 98%;
+  height: 100px;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 17px;
+  background-color: transparent;
+  border: 1px solid black;
+  outline: none;
+  color: black;
+  letter-spacing: 1px;
+  line-height: 20px;
+  ::placeholder {
+    color: black;
+  }
+`;
+
+const Button = styled.button`
+  background-color: black;
+  width: 100%;
+  border: none;
+  height: 50px;
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+`;
+
+const Form = styled.form`
+  width: 400px;
 `;
 
 export default WineDetails;

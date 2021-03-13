@@ -3,6 +3,7 @@ const initState = {
   allReviewsWithData: [],
   topLatestReviews: [],
   searchedReviews: [],
+  addReview: []
 }
 
 const reviewsReducer = (state = initState, action) => {
@@ -27,6 +28,11 @@ const reviewsReducer = (state = initState, action) => {
       return {
         ...state,
         searchedReviews: action.payload.searchedReviews,
+      }
+    case "ADD_REVIEW":
+      return{
+        ...state,
+        addReview: action.payload.addReview,
       }
     default:
       return { ...state };

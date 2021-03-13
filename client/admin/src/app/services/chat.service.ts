@@ -17,29 +17,6 @@ export class ChatService {
     this.socket.emit('joined_chat', {user: data});
   }
 
-  // newUserJoin(){
-  //   let obs= new Observable<{user:Users, message:String}>(ob=>{
-  //     this.socket.on('joined_chat',(data)=> {
-  //       ob.next(data);
-  //     });
-  //     return ()=>{this.socket.disconnect();}
-  //   });
-  //   return obs;
-  // }
-
-  // leaveRoom(data){
-  //   this.socket.emit('leave',data);
-  // }
-
-  // userLeftRoom(){
-  //   let obs= new Observable<{user:String, message:String}>(ob=>{
-  //     this.socket.on('left room',(data)=> {
-  //       ob.next(data);
-  //     });
-  //     return ()=>{this.socket.disconnect();}
-  //   });
-  //   return obs;
-  // }
 
   sendMessage(data: {user: addUser, message: string}){
     this.socket.emit('message_sent', data);

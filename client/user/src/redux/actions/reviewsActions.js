@@ -55,3 +55,26 @@ export const loadSearchedReviews = (title, rating, username) => async (dispatch)
     },
   });
 };
+export const WineDetails = (reviewInput , history) =>async (dispatch)=> {
+  try{
+    const response = await axios.post(
+      updateReviewByUserIdURL(),
+      {
+        reviewInput,
+        history
+      }
+    );
+    dispatch({
+      type: "ADD_REVIEW",
+      payload: {
+        isLogged: true,
+        user: response.data,
+      },
+    });
+    history.push('/');
+  } catch (exception) {
+    alert(exception.response.data);
+  }
+  
+  
+  }
