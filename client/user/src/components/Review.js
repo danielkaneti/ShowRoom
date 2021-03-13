@@ -47,7 +47,7 @@ export default function Review({review}) {
           <Grid justifyContent="left" item xs zeroMinWidth>
             <h4 style={{ margin: 0, textAlign: "left" }}>{user.firstName} {user.lastName}</h4>
             <p style={{ textAlign: "left" }}>
-              blabla
+              
             {reviewContent}
             </p>
      
