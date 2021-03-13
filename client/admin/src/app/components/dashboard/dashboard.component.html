@@ -27,21 +27,15 @@
   
                     <thead>
                       <tr>
-                        <th style="width: 10%;">Product</th>
                         <th style="width: 10%;">Content</th>
-                        <th style="width: 10%;">Rate</th>
                         <th style="width: 30%;">LastUpdated</th>
                       </tr>
                     </thead>
   
                     <tbody>
                       <tr *ngFor="let currReview of reviews">
-                        <!-- NOY TODO - SORRY BUT THIS IS NOT HOW YOU FINISH A DEGREE -->
-                        <!-- <td>{{currReview.user.username}}</td>
-                        <td>{{currReview.product.title}}</td> -->
-                        <td>{{currReview.reviewTitle}}</td>
+                
                         <td>{{currReview.reviewContent}}</td>
-                        <td> <i class="lar la-star mr-2"></i> {{currReview.rating}}</td>
                         <td>{{currReview.lastUpdated}}</td>
                       </tr>
   

@@ -42,9 +42,7 @@
                                         <thead>
 
                                             <tr>
-                                                <th style="width: 10%;">Product</th>
                                                 <th style="width: 10%;">Content</th>
-                                                <th style="width: 10%;">Rate</th>
                                                 <th style="width: 30%;">LastUpdated</th>
                                                 <th style="width: 10%;">Edit</th>
                                             </tr>
@@ -53,9 +51,7 @@
                                         <tbody>
 
                                             <tr *ngFor="let currReview of reviews">
-                                                <td>  {{ currReview.reviewTitle }} </td>
                                                 <td>  {{ currReview.reviewContent | slice:0:100 }}.. </td>
-                                                <td> <i class="lar la-star mr-2"></i> {{ currReview.rating }} </td>
                                                 <td>  {{ currReview.lastUpdated }} </td>
                                                
                                                 <td>

@@ -11,7 +11,7 @@ export const environment = {
   countUsersUrl: 'http://localhost:2222/users/countUsers',
   latestReviewsUrl: 'http://localhost:2222/reviews/latestReviews/6',
   topRatedProductsUrl: 'http://localhost:2222/products/topProducts/15',
-  avgRatingByYear: 'http://localhost:2222/products/avgRatingByYear',
+  avgRatingByYear: 'http://localhost:2222/products/',
   countByGenre:'http://localhost:2222/products/countByGenre',
   countByYear:'http://localhost:2222/products/countByYear',
   userSearch: 'http://localhost:2222/users/getUserByParam',
@@ -19,7 +19,6 @@ export const environment = {
   reviewSearch: 'http://localhost:2222/reviews/searchReview',
   countStatics: 'http://localhost:2222/products/countByGenre',
   countYearStatics:'http://localhost:2222/products/countByYear',
-  avgStatics: 'http://localhost:2222/products/avgRatingByYear',
   loginUrl: 'http://localhost:2222/users/login',
   productByGenre: 'http://localhost:2222/products/productsByGenre',
   scrapProduct: 'http://localhost:2222/products/scrapeProducts/file='
