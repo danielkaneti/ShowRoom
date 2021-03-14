@@ -8,7 +8,6 @@ const createReview = async (body) => {
     const review = new Reviews({
         reviewTitle: body.reviewTitle,
         reviewContent: body.reviewContent,
-        rating: body.rating,
         products: body.products,
         users: body.users
     });
@@ -27,16 +26,12 @@ const getReviews = async () => {
 };
 
 
-const getReviewsProductsUsers = async (productTitle=null, rating=NaN, userName=null) => {
+const getReviewsProductsUsers = async (productTitle=null, userName=null) => {
 
     var match = {};
 
     if(productTitle!==null){
         match["product.title"] = new RegExp(productTitle, 'i')
-    }
-
-    if(isNaN(rating)!==true){
-        match["rating"] = {$eq:parseInt(rating)};
     }
 
     if(userName!==null){
@@ -74,7 +69,6 @@ const getReviewsProductsUsers = async (productTitle=null, rating=NaN, userName=n
                     "_id": 1,
                     "reviewTitle": 2,
                     "reviewContent": 3,
-                    "rating": 4,
                     "lastUpdated": 5,
                     "product._id":6,
                     "product.title": 7,
@@ -97,16 +91,12 @@ const getReviewsProductsUsers = async (productTitle=null, rating=NaN, userName=n
     return Reviews.aggregate(query)};
 
 
-const searchReview = async (title=null, rating=NaN, user=null) => {
+const searchReview = async (title=null, user=null) => {
 
     var match = {};
 
     if(title!==null){
         match["reviewTitle"] = new RegExp(title, 'i')
-    }
-
-    if(isNaN(rating)!==true){
-        match["rating"] = {$eq:parseInt(rating)};
     }
 
     if(user!==null){
@@ -144,7 +134,6 @@ const searchReview = async (title=null, rating=NaN, user=null) => {
                     "_id": 1,
                     "reviewTitle": 2,
                     "reviewContent": 3,
-                    "rating": 4,
                     "lastUpdated":5,
                     "user.username": 6,
                     "product.title":7
@@ -185,7 +174,6 @@ const getReviewsByIds = async (review_ids) => {
                     "_id": 1,
                     "reviewTitle": 2,
                     "reviewContent": 3,
-                    "rating": 4,
                     "user._id":5,
                     "user.username": 6,
                     "user.firstName": 7,
@@ -231,7 +219,6 @@ const topReviewsByDate = async (topNumber) => {
                     "_id": 1,
                     "reviewTitle": 2,
                     "reviewContent": 3,
-                    "rating": 4,
                     "lastUpdated":5,
                     "product._id":6,
                     "product.title": 7,
@@ -275,12 +262,6 @@ const getReviewByUserId = async (id) => {
 };
 
 
-const getReviewsByTitleRatingUsername = async (rating, title, username) => {
-    return await Reviews.find({'rating': rating}).
-        populate({path:'products', match:{'title': {$regex: `.*${title}.*`}}}).
-        populate({path:'users', match:{'username': username}}).exec();
-};
-
 
 const getReviewById = async (id) => {
     return await Reviews.findById(id);
@@ -320,7 +301,6 @@ module.exports = {
     getReviewByProductId,
     getReviewByUserId,
     getReviewById,
-    getReviewsByTitleRatingUsername,
     countReviews,
     topReviewsByDate,
     getReviewsByIds,
