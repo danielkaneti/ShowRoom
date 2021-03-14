@@ -3,6 +3,7 @@ const base_url = "http://localhost:2222/reviews";
 
 export const reviewsURL = () => `${base_url}/`;
 
+export const searchedReviewsURL = (title, rating, username) => `${base_url}/getReviewByParams/${title}=${rating}=${username}`;
 
 export const reviewsCountURL = () => `${base_url}/countReviews`;
 

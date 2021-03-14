@@ -2,6 +2,9 @@ const express = require('express');
 const reviewController = require('../controllers/reviews');
 var router = express.Router();
 
+router.route('/getReviewByParams/:param')
+    .get(reviewController.getReviewsByTitleRatingUsername)
+
 router.route('/searchReview/:param')
     .get(reviewController.searchReview)
 

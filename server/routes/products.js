@@ -20,6 +20,11 @@ router.route('/')
     .post(productController.createProduct)
     .get(productController.getProducts);
 
+router.route('/topProducts/:topNumber')
+    .get(productController.topProductsByRating);
+
+router.route('/topProducts')
+    .get(productController.topProductsByRating);
 
 router.route('/title/:productTitle')
     .get(productController.getProductByTitle);
