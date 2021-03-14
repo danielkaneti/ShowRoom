@@ -30,7 +30,7 @@ export class EditreviewComponent implements OnInit {
   }
 
 
-  updateReview(revTitle: string, revCont: string , revRat: number) {
+  updateReview(revTitle: string, revCont: string) {
 
     let id = this.rout.snapshot.params['id'];
 
@@ -38,7 +38,6 @@ export class EditreviewComponent implements OnInit {
      
       reviewTitle: revTitle,
       reviewContent: revCont,
-      rating: revRat
     });
 
     this.revService.updateReview(id, reviewNew).subscribe();

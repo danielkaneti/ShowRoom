@@ -45,8 +45,8 @@ export const loadTopLatestReviews = (numWanted) => async (dispatch) => {
   });
 };
 
-export const loadSearchedReviews = (title, rating, username) => async (dispatch) => {
-  const response = await axios.get(searchedReviewsURL(title, rating, username));
+export const loadSearchedReviews = (title, username) => async (dispatch) => {
+  const response = await axios.get(searchedReviewsURL(title, username));
   const searchedReviewsData = [...response.data].reverse();
   dispatch({
     type: "FETCH_SEARCHED_REVIEWS",

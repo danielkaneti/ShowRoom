@@ -32,12 +32,7 @@
                                                             [ngModelOptions]="{standalone: true}">
                                                     </div>
 
-                                                    <div class="col-2 form-group">
-                                                        <label for="uname"> </label>
-                                                         <input #revR type="text"
-                                                            class="form-control" [(ngModel)]="rev.rating"
-                                                            [ngModelOptions]="{standalone: true}">
-                                                    </div>
+                                              
 
                                                     <div class="col-6 form-group">
                                                         <label for="lname">Content: </label>
@@ -52,7 +47,7 @@
                                                 <div style="display: flex; justify-content: space-between;">
                                                     <div>
                                                         <button (click)="alert()"
-                                                            (click)="updateReview(revT.value, revC.value, +revR.value)"
+                                                            (click)="updateReview(revT.value, revC.value)"
                                                             type="submit" class="btn btn-primary mr-2">Submit</button>
                                                         <button type="reset" class="btn btn-danger">Clear</button>
 

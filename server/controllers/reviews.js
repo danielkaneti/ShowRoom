@@ -35,7 +35,7 @@ const getReviewsProductsUsers = async (req, res) => {
 
 const searchReview = async (req, res) => {
 
-    var [title, rating, user] = req.params.param.split('=');
+    var [title, user] = req.params.param.split('=');
 
     if(title === ''){
         title =  null
@@ -45,11 +45,7 @@ const searchReview = async (req, res) => {
         user =  null
     }
 
-    if(rating === ''){
-        rating =  NaN
-    }
-
-    const reviews = await reviewsService.searchReview(title, rating, user);
+    const reviews = await reviewsService.searchReview(title, user);
 
     if (!reviews){
         return res.status(404).json({errors: ['reviews not found']});

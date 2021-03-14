@@ -275,7 +275,6 @@ const updateReview = async (id, body) => {
 
     review.reviewTitle = body.reviewTitle;
     review.reviewContent = body.reviewContent;
-    review.rating = body.rating;
 
     await review.save();
     return review;
