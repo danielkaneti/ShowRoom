@@ -14,22 +14,6 @@ const createProduct = async (req, res) => {
 };
 
 
-const topProductsByRating = async (req, res) => {
-
-    var topNumber;
-
-    if (!req.params.topNumber){
-        topNumber = await productsService.countProducts();
-    }
-    else{
-        topNumber = req.params.topNumber;
-    }
-
-    const products = await productsService.topProductsByRating(topNumber);
-    
-    res.json(calcRatingAvg(products));
-};
-
 
 function roundToTwo(num) {
     return +(Math.round(num + "e+2")  + "e-2");
@@ -77,40 +61,6 @@ const calcRatingAvg = (rating) => {
 };
 
 
-
-const avgRatingByYear = async (req, res) => {
-    const ratingByYears = await productsService.avgRatingByYear();
-
-    const avgRatingByYear = await avgRatingMapReduce(ratingByYears, 'year');
-
-    res.json(avgRatingByYear);
-};
-
-
-const avgRatingMapReduce = async (obj, keyMap) => {
-
-    var map = _.mapValues(_.groupBy(obj, keyMap),
-        clist => clist.map(obj => _.omit(obj, keyMap)));
-
-    var data = {};
-    Object.keys(map).forEach(function(key) {
-        var newArray = []
-        map[key].forEach(function (arrayItem) {
-            newArray.push(arrayItem['rating_review']['rating'])
-        });
-        data[key] = newArray
-    });
-
-    var reduce = []
-    Object.keys(data).forEach(function (key){
-        var avg_value = average = data[key].reduce(function (avg, value, _, { length }) {
-            return avg + value / length;
-        }, 0);
-        reduce.push({'year':key, 'avg_count': roundToTwo(avg_value)})
-    });
-
-    return reduce
-}
 
 
 const countProducts = async (req, res) => {
@@ -275,11 +225,9 @@ module.exports = {
     deleteProduct,
     getProductByTitleGenreYear,
     countProducts,
-    topProductsByRating,
     getProductsByGenre,
     countByGenre,
     countByYear,
-    avgRatingByYear,
     scrapeProductsFromWinery,
     productsByGenre,
 }

@@ -20,7 +20,6 @@ const getProducts = async () => {
                     from:"reviews",
                     localField:"reviews",
                     foreignField: "_id",
-                    as: "rating_review"
                 }
         },
         {
@@ -33,36 +32,12 @@ const getProducts = async () => {
                     'description':5,
                     'image_url':6,
                     'trailer_video':7,
-                    'rating_review.rating':8,
                 }
         }])
 };
 
 
-const avgRatingByYear = async () => {
-     return Products.aggregate([
-        {
-            $lookup:
-                {
-                    from:"reviews",
-                    localField:"reviews",
-                    foreignField: "_id",
-                    as: "rating_review"
-                }
-        },
-         {
-             $unwind:"$rating_review"
-         },
-         {
-             $project:
-                 {
-                     "_id": 0,
-                     "year": 1,
-                     "rating_review.rating": 2
-                 }
-         }
-        ]);
-};
+
 
 
 const countProducts = async () => {
@@ -117,59 +92,7 @@ const productsByGenre = async () => {
 };
 
 
-const topProductsByRating = async (topNumber) => {
 
-    var query = [
-        { $lookup:
-                {
-                    from:"reviews",
-                    localField:"reviews",
-                    foreignField: "_id",
-                    as: "rating_review"
-                }
-        },
-        {
-            $project:
-                {
-                    "_id": 1,
-                    "title": 2,
-                    "year": 3,
-                    "genre": 4,
-                    "description": 5,
-                    "image_url":6,
-                    "trailer_video":7,
-                    "rating_review.rating": {$avg: "$rating_review.rating"}
-                }
-        },
-        {
-            $project:
-                {
-                    "_id": 1,
-                    "title": 2,
-                    "year": 3,
-                    "genre": 4,
-                    "description": 5,
-                    "image_url":6,
-                    "trailer_video":7,
-                    "rating_review": { $slice: [ "$rating_review", 1 ] }
-
-                }
-        },
-        {
-            $sort:
-                {
-                    "rating_review.rating":-1
-                }
-
-        },
-        {
-            $limit:parseInt(topNumber)
-        }
-    ]
-
-    
-    return Products.aggregate(query);
-};
 
 
 const getProductByTitle = async (title) => {
@@ -215,7 +138,6 @@ const getProductByTitleGenreYear = async (title=null, genre=null, year=NaN) => {
                     from:"reviews",
                     localField:"reviews",
                     foreignField: "_id",
-                    as: "rating_review"
                 }
         },
         {
@@ -228,7 +150,6 @@ const getProductByTitleGenreYear = async (title=null, genre=null, year=NaN) => {
                 "description": 5,
                 "image_url": 6,
                 "trailer_video": 7,
-                "rating_review.rating": {$avg: "$rating_review.rating"}
             }
         },
         {
@@ -241,7 +162,6 @@ const getProductByTitleGenreYear = async (title=null, genre=null, year=NaN) => {
                     "description": 5,
                     "image_url":6,
                     "trailer_video":7,
-                    "rating_review": { $slice: [ "$rating_review", 1 ] }
 
                 }
         },
@@ -314,12 +234,10 @@ module.exports = {
     deleteProduct,
     getProductByTitleGenreYear,
     countProducts,
-    topProductsByRating,
     getReviewsByProductId,
     getProductsByGenre,
     countByGenre,
     countByYear,
-    avgRatingByYear,
     removeProductReviews,
     productsByGenre
     }
